@@ -26,6 +26,7 @@ return (new Config())
             'import_constants' => true,
             'import_functions' => true,
         ],
+        'no_unused_imports' => true,
     ])
     ->setRiskyAllowed(true)
     ->setUsingCache(true);

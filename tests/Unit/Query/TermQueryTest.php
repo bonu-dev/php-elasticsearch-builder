@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Bonu\ElasticsearchBuilder\Tests\Query;
+namespace Bonu\ElasticsearchBuilder\Tests\Unit\Query;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\Depends;
 use Bonu\ElasticsearchBuilder\Tests\TestCase;
 use Bonu\ElasticsearchBuilder\Query\TermQuery;
-use PHPUnit\Framework\Attributes\Test;
 
 final class TermQueryTest extends TestCase
 {

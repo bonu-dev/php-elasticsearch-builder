@@ -4,29 +4,25 @@ declare(strict_types=1);
 
 namespace Bonu\ElasticsearchBuilder;
 
-use Elastic\Elasticsearch\Client;
+use Bonu\ElasticsearchBuilder\Query\BoolQuery;
+use Bonu\ElasticsearchBuilder\Query\QueryInterface;
 
 /**
  * @internal
  */
-final readonly class QueryBuilder
+final class QueryBuilder
 {
     /**
-     * @param \Elastic\Elasticsearch\Client $client
+     * @var null|\Bonu\ElasticsearchBuilder\Query\BoolQuery
+     */
+    private ?BoolQuery $query = null;
+
+    /**
      * @param null|string $index
      */
     public function __construct(
-        private Client $client,
-        private ?string $index = null,
+        private readonly ?string $index = null,
     ) {
-    }
-
-    /**
-     * @return \Elastic\Elasticsearch\Client
-     */
-    protected function getClient(): Client
-    {
-        return $this->client;
     }
 
     /**
@@ -39,6 +35,8 @@ final readonly class QueryBuilder
 
     /**
      * @return array<string, mixed>
+     *
+     * @throws \Bonu\ElasticsearchBuilder\Exception\Query\QueryException
      */
     public function build(): array
     {
@@ -48,6 +46,25 @@ final readonly class QueryBuilder
             $body['index'] = $this->getIndex();
         }
 
+        if ($this->query !== null) {
+            $body['query'] = $this->query->toArray();
+        }
+
         return $body;
+    }
+
+    /**
+     * @param \Bonu\ElasticsearchBuilder\Query\QueryInterface $query
+     *
+     * @return self
+     */
+    public function query(QueryInterface $query): self
+    {
+        if ($this->query === null) {
+            $this->query = new BoolQuery();
+        }
+
+        $this->query->must($query);
+        return $this;
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Bonu\ElasticsearchBuilder\Tests\Query\Fixture;
+namespace Bonu\ElasticsearchBuilder\Tests\Fixture;
 
 use Bonu\ElasticsearchBuilder\Query\QueryInterface;
 

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Bonu\ElasticsearchBuilder\Tests\Query;
+namespace Bonu\ElasticsearchBuilder\Tests\Unit\Query;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\Depends;
 use Bonu\ElasticsearchBuilder\Tests\TestCase;
 use Bonu\ElasticsearchBuilder\Query\BoolQuery;
-use PHPUnit\Framework\Attributes\Test;
-use Bonu\ElasticsearchBuilder\Tests\Query\Fixture\BoolQueryFixture;
+use Bonu\ElasticsearchBuilder\Tests\Fixture\BoolQueryFixture;
 use Bonu\ElasticsearchBuilder\Exception\Query\EmptyBoolQueryException;
 
 final class BoolQueryTest extends TestCase
