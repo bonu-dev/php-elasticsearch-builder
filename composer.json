@@ -42,5 +42,14 @@
         "allow-plugins": {
             "php-http/discovery": true
         }
+    },
+    "archive": {
+        "exclude": [
+            "tests",
+            ".github",
+            ".data",
+            "docker-compose.yaml",
+            "scripts"
+        ]
     }
 }

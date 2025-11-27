@@ -1,0 +1,50 @@
+x-base: &base
+  restart: unless-stopped
+  logging:
+    options:
+      max-size: "12m"
+      max-file: "5"
+    driver: json-file
+  networks:
+    - php-elasticsearch-builder
+
+networks:
+  php-elasticsearch-builder:
+
+services:
+  elasticsearch:
+    <<: *base
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.2.1
+    volumes:
+      - "./.data/elastic:/usr/share/elasticsearch/data"
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -s http://localhost:9200/_cluster/health?wait_for_status=yellow&timeout=500ms" ]
+      interval: 10s
+      timeout: 10s
+      retries: 120
+
+  kibana:
+    <<: *base
+    image: docker.elastic.co/kibana/kibana:9.2.1
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+
+  workspace:
+    <<: *base
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: workspace
+    entrypoint: "/bin/bash"
+    command: [ "-c", "while true; do sleep 3000; done;" ]
+    working_dir: /opt/app
+    environment:
+      ELASTICSEARCH_HOST: elasticsearch:9200
+    volumes:
+      - "./:/opt/app"

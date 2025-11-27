@@ -1,0 +1,42 @@
+name: PHPUnit
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.4
+          coverage: pcov
+      - uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock', 'composer.json') }}
+          restore-keys: |
+            composer-
+      - run: composer install --no-interaction --no-progress
+      - run: vendor/bin/phpunit --testsuite unit --coverage-clover build/logs/clover.xml
+#      - uses: coverallsapp/github-action@v2
+#        with:
+#          github-token: ${{ github.token }}
+#          parallel: true
+#          flag-name: phpunit-${{ join(matrix.*, '-') }}
+#        env:
+#          COVERALLS_REPO_TOKEN: ${{ secrets.CI_COVERALLS_TOKEN }}
+
+#  finish:
+#    needs: phpunit
+#    if: ${{ always() }}
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: coverallsapp/github-action@v2
+#        with:
+#          parallel-finished: true
+#          carryforward: "phpunit-8.1,phpunit-8.2,phpunit-8.3,phpunit-8.4"

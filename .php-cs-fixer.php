@@ -8,8 +8,9 @@ use PhpCsFixer\Finder;
 return (new Config())
     ->setParallelConfig(PhpCsFixer\Runner\Parallel\ParallelConfigFactory::detect())
     ->setFinder(Finder::create()->in([
-        './src',
-        './tests',
+        __DIR__ . DIRECTORY_SEPARATOR . 'src',
+        __DIR__ . DIRECTORY_SEPARATOR . 'scripts',
+        __DIR__ . DIRECTORY_SEPARATOR . 'tests',
     ]))
     ->setRules([
         '@PSR12' => true,
