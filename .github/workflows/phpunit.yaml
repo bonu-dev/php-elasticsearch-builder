@@ -58,7 +58,7 @@ jobs:
           restore-keys: |
             composer-
       - run: composer install --no-interaction --no-progress
-      - run: ./scripts/import_dataset.php
+      - run: php ./scripts/import_dataset.php
         env:
           ELASTICSEARCH_HOST: elasticsearch:9200
       - run: vendor/bin/phpunit --testsuite integration --coverage-clover build/logs/clover.xml
