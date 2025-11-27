@@ -23,20 +23,18 @@ jobs:
             composer-
       - run: composer install --no-interaction --no-progress
       - run: vendor/bin/phpunit --testsuite unit --coverage-clover build/logs/clover.xml
-#      - uses: coverallsapp/github-action@v2
-#        with:
-#          github-token: ${{ github.token }}
-#          parallel: true
-#          flag-name: phpunit-${{ join(matrix.*, '-') }}
-#        env:
-#          COVERALLS_REPO_TOKEN: ${{ secrets.CI_COVERALLS_TOKEN }}
+      - uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ github.token }}
+          parallel: true
+          flag-name: phpunit-unit
 
-#  finish:
-#    needs: phpunit
-#    if: ${{ always() }}
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: coverallsapp/github-action@v2
-#        with:
-#          parallel-finished: true
-#          carryforward: "phpunit-8.1,phpunit-8.2,phpunit-8.3,phpunit-8.4"
+  finish:
+    needs: unit
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: coverallsapp/github-action@v2
+        with:
+          parallel-finished: true
+          carryforward: "phpunit-unit"
