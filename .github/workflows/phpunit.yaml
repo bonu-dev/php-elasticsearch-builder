@@ -31,6 +31,8 @@ jobs:
 
   integration:
     runs-on: ubuntu-latest
+    env:
+      ELASTICSEARCH_HOST: elasticsearch:9200
     services:
       elasticsearch:
         image: docker.elastic.co/elasticsearch/elasticsearch:9.2.1
@@ -59,8 +61,6 @@ jobs:
             composer-
       - run: composer install --no-interaction --no-progress
       - run: php ./scripts/import_dataset.php
-        env:
-          ELASTICSEARCH_HOST: elasticsearch:9200
       - run: vendor/bin/phpunit --testsuite integration --coverage-clover build/logs/clover.xml
       - uses: coverallsapp/github-action@v2
         with:
