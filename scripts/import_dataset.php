@@ -15,39 +15,60 @@ $client = ClientBuilder::create()
     ->build();
 
 try {
-    $client->indices()->delete(['index' => 'ecommerce']);
+    $client->indices()->delete(['index' => 'spotify']);
 } catch (ClientResponseException) {}
 
 $client->indices()->create([
-    'index' => 'ecommerce',
+    'index' => 'spotify',
 ]);
 
 $client->indices()->putMapping([
-    'index' => 'ecommerce',
+    'index' => 'spotify',
     'body' => [
         'dynamic' => 'strict',
         'properties' => [
-            'stock_code' => [
-                'type' => 'keyword',
-            ],
-            'description' => [
+            'track_name' => [
                 'type' => 'text',
             ],
-            'quantity' => [
+            'track_number' => [
                 'type' => 'integer',
             ],
-            'invoice_date' => [
-                'type' => 'date',
-                'format' => 'yyyy-MM-dd HH:mm:ss',
-            ],
-            'unit_price' => [
-                'type' => 'float',
-            ],
-            'customer_id' => [
+            'track_popularity' => [
                 'type' => 'integer',
             ],
-            'country' => [
+            'explicit' => [
+                'type' => 'boolean',
+            ],
+            'artist_name' => [
+                'type' => 'text',
+            ],
+            'artist_popularity' => [
+                'type' => 'integer',
+            ],
+            'artist_followers' => [
+                'type' => 'integer',
+            ],
+            'artist_genres' => [
+                'type' => 'text', // @todo
+            ],
+            'album_id' => [
                 'type' => 'keyword',
+            ],
+            'album_name' => [
+                'type' => 'text',
+            ],
+            'album_release_date' => [
+                'type' => 'date',
+                'format' => 'yyyy-MM-dd',
+            ],
+            'album_total_tracks' => [
+                'type' => 'integer',
+            ],
+            'album_type' => [
+                'type' => 'keyword',
+            ],
+            'track_duration_min' => [
+                'type' => 'float',
             ],
         ],
     ],
@@ -62,27 +83,41 @@ echo 'importing dataset... this will take a while' . PHP_EOL;
 
 while (($line = $file->fgetcsv(',', escape: "\\")) !== false) {
     [
-        $invoiceNumber,
-        $stockCode,
-        $description,
-        $quantity,
-        $invoiceDate,
-        $unitPrice,
-        $customerId,
-        $country
+        $trackId,
+        $trackName,
+        $trackNumber,
+        $trackPopularity,
+        $explicit,
+        $artistName,
+        $artistPopularity,
+        $artistFollowers,
+        $artistGenres,
+        $albumId,
+        $albumName,
+        $albumReleaseDate,
+        $albumTotalTracks,
+        $albumType,
+        $trackDurationMin,
     ] = $line;
 
     $client->index([
-        'index' => 'ecommerce',
-        'id' => $invoiceNumber,
+        'index' => 'spotify',
+        'id' => $trackId,
         'body' => [
-            'stock_code' => $stockCode,
-            'description' => $description,
-            'quantity' => $quantity,
-            'invoice_date' => DateTime::createFromFormat('m/d/Y H:i', $invoiceDate)->format('Y-m-d H:i:s'),
-            'unit_price' => $unitPrice,
-            'customer_id' => $customerId,
-            'country' => $country,
+            'track_name' => $trackName,
+            'track_number' => $trackNumber,
+            'track_popularity' => $trackPopularity,
+            'explicit' => $explicit === 'TRUE',
+            'artist_name' => $artistName,
+            'artist_popularity' => $artistPopularity,
+            'artist_followers' => $artistFollowers,
+            'artist_genres' => $artistGenres,
+            'album_id' => $albumId,
+            'album_name' => $albumName,
+            'album_release_date' => $albumReleaseDate,
+            'album_total_tracks' => $albumTotalTracks,
+            'album_type' => $albumType,
+            'track_duration_min' => $trackDurationMin,
         ],
     ]);
 }

@@ -48,3 +48,6 @@ services:
       ELASTICSEARCH_HOST: elasticsearch:9200
     volumes:
       - "./:/opt/app"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
