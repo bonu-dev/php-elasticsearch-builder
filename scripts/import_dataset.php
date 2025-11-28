@@ -32,6 +32,9 @@ $client->indices()->putMapping([
     'body' => [
         'dynamic' => 'strict',
         'properties' => [
+            'track_id' => [
+                'type' => 'keyword',
+            ],
             'track_name' => [
                 'type' => 'text',
             ],
@@ -107,8 +110,8 @@ while (($line = $file->fgetcsv(',', escape: "\\")) !== false) {
 
     $client->index([
         'index' => 'spotify',
-        'id' => $trackId,
         'body' => [
+            'track_id' => $trackId,
             'track_name' => $trackName,
             'track_number' => $trackNumber,
             'track_popularity' => $trackPopularity,

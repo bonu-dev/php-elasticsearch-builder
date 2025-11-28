@@ -40,17 +40,19 @@ final class QueryBuilder
      */
     public function build(): array
     {
-        $body = [];
+        $payload = [
+            'body' => [],
+        ];
 
         if ($this->getIndex() !== null) {
-            $body['index'] = $this->getIndex();
+            $payload['index'] = $this->getIndex();
         }
 
         if ($this->query !== null) {
-            $body['query'] = $this->query->toArray();
+            $payload['body']['query'] = $this->query->toArray();
         }
 
-        return $body;
+        return $payload;
     }
 
     /**
