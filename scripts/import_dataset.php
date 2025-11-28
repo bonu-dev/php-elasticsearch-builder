@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use Elastic\Elasticsearch\ClientBuilder;
 use Elastic\Elasticsearch\Exception\ClientResponseException;
@@ -16,7 +16,8 @@ $client = ClientBuilder::create()
 
 try {
     $client->indices()->delete(['index' => 'spotify']);
-} catch (ClientResponseException) {}
+} catch (ClientResponseException) {
+}
 
 $client->indices()->create([
     'index' => 'spotify',
@@ -79,7 +80,7 @@ $file = new SplFileObject(
     'rb',
 );
 
-echo 'importing dataset... this will take a while' . PHP_EOL;
+echo 'importing dataset... this may take a while' . PHP_EOL;
 
 while (($line = $file->fgetcsv(',', escape: "\\")) !== false) {
     [
