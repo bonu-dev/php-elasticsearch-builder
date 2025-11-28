@@ -8,8 +8,10 @@ use Elastic\Elasticsearch\Exception\ClientResponseException;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+$host = $argv[1] ?? $_ENV['ELASTICSEARCH_HOST'];
+
 $client = ClientBuilder::create()
-    ->setHosts([$_ENV['ELASTICSEARCH_HOST']])
+    ->setHosts([$host])
     ->build();
 
 try {
