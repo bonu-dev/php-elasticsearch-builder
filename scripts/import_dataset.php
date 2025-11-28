@@ -8,7 +8,11 @@ use Elastic\Elasticsearch\Exception\ClientResponseException;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$host = $argv[1] ?? $_ENV['ELASTICSEARCH_HOST'];
+$host = getenv('ELASTICSEARCH_HOST');
+if ($host === false) {
+    echo 'missing env ELASTICSEARCH_HOST' . PHP_EOL;
+    exit(1);
+}
 
 $client = ClientBuilder::create()
     ->setHosts([$host])

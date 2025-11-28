@@ -58,7 +58,9 @@ jobs:
           restore-keys: |
             composer-
       - run: composer install --no-interaction --no-progress
-      - run: ./scripts/import_dataset.php localhost:9200
+      - run: ./scripts/import_dataset.php
+        env:
+          ELASTICSEARCH_HOST: localhost:9200
       - run: vendor/bin/phpunit --testsuite integration --coverage-clover build/logs/clover.xml
       - uses: coverallsapp/github-action@v2
         with:
