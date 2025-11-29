@@ -7,7 +7,7 @@ namespace Bonu\ElasticsearchBuilder\Query;
 /**
  * @see https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-term-query
  */
-final class TermQuery implements QueryInterface
+class TermQuery implements QueryInterface
 {
     use BoostableQuery;
 
@@ -16,8 +16,8 @@ final class TermQuery implements QueryInterface
      * @param int|float|string|bool $value
      */
     public function __construct(
-        private readonly string|\Stringable $field,
-        private readonly int|float|string|bool $value,
+        protected string|\Stringable $field,
+        protected int|float|string|bool $value,
     ) {
     }
 

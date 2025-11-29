@@ -9,16 +9,16 @@ use Bonu\ElasticsearchBuilder\Exception\Query\EmptyNestedQueryException;
 /**
  * @see https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-nested-query
  */
-final class NestedQuery implements QueryInterface
+class NestedQuery implements QueryInterface
 {
     /** @var null|\Bonu\ElasticsearchBuilder\Query\QueryInterface */
-    private ?QueryInterface $query = null;
+    protected ?QueryInterface $query = null;
 
     /**
      * @param string|\Stringable $path
      */
     public function __construct(
-        private readonly string|\Stringable $path,
+        protected string|\Stringable $path,
     ) {
     }
 

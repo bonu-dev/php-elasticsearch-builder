@@ -13,7 +13,7 @@ use function sprintf;
 /**
  * @see https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-match-query
  */
-final class MatchQuery implements QueryInterface
+class MatchQuery implements QueryInterface
 {
     use BoostableQuery;
     use AnalyzerAwareQuery;
@@ -29,9 +29,9 @@ final class MatchQuery implements QueryInterface
      * @throws \Bonu\ElasticsearchBuilder\Exception\Query\InvalidOperatorQueryException
      */
     public function __construct(
-        private readonly string|\Stringable $field,
-        private readonly int|float|string|bool $value,
-        private readonly string $operator = self::OPERATOR_OR
+        protected string|\Stringable $field,
+        protected int|float|string|bool $value,
+        protected string $operator = self::OPERATOR_OR
     ) {
         if (!in_array($operator, [self::OPERATOR_OR, self::OPERATOR_AND], true)) {
             throw new InvalidOperatorQueryException(sprintf(

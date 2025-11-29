@@ -7,7 +7,7 @@ namespace Bonu\ElasticsearchBuilder\Query;
 /**
  * @see https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-match-query-phrase
  */
-final class MatchPhraseQuery implements QueryInterface
+class MatchPhraseQuery implements QueryInterface
 {
     use BoostableQuery;
     use AnalyzerAwareQuery;
@@ -18,9 +18,9 @@ final class MatchPhraseQuery implements QueryInterface
      * @param null|int $slop
      */
     public function __construct(
-        private readonly string|\Stringable $field,
-        private readonly int|float|string|bool $value,
-        private readonly ?int $slop = null,
+        protected string|\Stringable $field,
+        protected int|float|string|bool $value,
+        protected ?int $slop = null,
     ) {
     }
 

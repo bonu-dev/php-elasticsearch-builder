@@ -7,6 +7,11 @@ namespace Bonu\ElasticsearchBuilder\Aggregation;
 interface AggregationInterface
 {
     /**
+     * @return bool
+     */
+    public function isGlobal(): bool;
+
+    /**
      * @return array<array-key, mixed>
      */
     public function toArray(): array;

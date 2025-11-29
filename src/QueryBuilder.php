@@ -10,18 +10,18 @@ use Bonu\ElasticsearchBuilder\Query\QueryInterface;
 /**
  * @internal
  */
-final class QueryBuilder
+class QueryBuilder
 {
     /**
      * @var null|\Bonu\ElasticsearchBuilder\Query\BoolQuery
      */
-    private ?BoolQuery $query = null;
+    protected ?BoolQuery $query = null;
 
     /**
      * @param null|string $index
      */
     public function __construct(
-        private readonly ?string $index = null,
+        protected ?string $index = null,
     ) {
     }
 

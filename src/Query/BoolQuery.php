@@ -9,7 +9,7 @@ use Bonu\ElasticsearchBuilder\Exception\Query\EmptyBoolQueryException;
 /**
  * @see https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-bool-query
  */
-final class BoolQuery implements QueryInterface
+class BoolQuery implements QueryInterface
 {
     use BoostableQuery;
 
@@ -21,7 +21,7 @@ final class BoolQuery implements QueryInterface
     /**
      * @var array<self::TYPE_*, list<\Bonu\ElasticsearchBuilder\Query\QueryInterface>>
      */
-    private array $queries = [
+    protected array $queries = [
         self::TYPE_MUST => [],
         self::TYPE_FILTER => [],
         self::TYPE_SHOULD => [],
@@ -116,7 +116,7 @@ final class BoolQuery implements QueryInterface
      * @param \Bonu\ElasticsearchBuilder\Query\QueryInterface $query
      * @param self::TYPE* $type
      */
-    private function mergeAddQuery(QueryInterface $query, string $type): void
+    protected function mergeAddQuery(QueryInterface $query, string $type): void
     {
         if ($query instanceof self && ($query->getQueries()[$type] ?? []) !== []) {
             $this->queries[$type] = [
