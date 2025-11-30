@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Bonu\ElasticsearchBuilder\Tests\Integration\Query;
 
+use PHPUnit\Framework\Attributes\Test;
 use Bonu\ElasticsearchBuilder\QueryBuilder;
 use Bonu\ElasticsearchBuilder\Query\TermQuery;
 use Bonu\ElasticsearchBuilder\Tests\IntegrationTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
+/**
+ * @internal
+ */
 final class TermQueryTest extends IntegrationTestCase
 {
     #[Test]

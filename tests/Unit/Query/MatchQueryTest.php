@@ -10,6 +10,11 @@ use Bonu\ElasticsearchBuilder\Tests\TestCase;
 use Bonu\ElasticsearchBuilder\Query\MatchQuery;
 use Bonu\ElasticsearchBuilder\Exception\Query\InvalidOperatorQueryException;
 
+use const PHP_FLOAT_EPSILON;
+
+/**
+ * @internal
+ */
 final class MatchQueryTest extends TestCase
 {
     #[Test]
@@ -36,17 +41,17 @@ final class MatchQueryTest extends TestCase
         ], $array);
     }
 
-    #[Test]
     #[Depends('itCorrectlyBuildsArray')]
+    #[Test]
     public function itCorrectlySetsBoost(): void
     {
         $array = new MatchQuery('foo', 'bar')->boost(10.0)->toArray();
 
-        $this->assertSame(10.0, $array['match']['foo']['boost']);
+        $this->assertEqualsWithDelta(10.0, $array['match']['foo']['boost'], PHP_FLOAT_EPSILON);
     }
 
-    #[Test]
     #[Depends('itCorrectlyBuildsArray')]
+    #[Test]
     public function itCorrectlySetsOperator(): void
     {
         $array = new MatchQuery('foo', 'bar', MatchQuery::OPERATOR_AND)->toArray();
@@ -54,8 +59,8 @@ final class MatchQueryTest extends TestCase
         $this->assertSame('AND', $array['match']['foo']['operator']);
     }
 
-    #[Test]
     #[Depends('itCorrectlyBuildsArray')]
+    #[Test]
     public function itCorrectlySetsAnalyzer(): void
     {
         $array = new MatchQuery('foo', 'bar')

@@ -8,9 +8,9 @@ use Elastic\Elasticsearch\Exception\ClientResponseException;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$host = getenv('ELASTICSEARCH_HOST');
+$host = \getenv('ELASTICSEARCH_HOST');
 if ($host === false) {
-    echo 'missing env ELASTICSEARCH_HOST' . PHP_EOL;
+    echo 'missing env ELASTICSEARCH_HOST' . \PHP_EOL;
     exit(1);
 }
 
@@ -83,13 +83,13 @@ $client->indices()->putMapping([
 ]);
 
 $file = new SplFileObject(
-    implode(DIRECTORY_SEPARATOR, [__DIR__, '..', 'tests', 'dataset.csv']),
+    \implode(\DIRECTORY_SEPARATOR, [__DIR__, '..', 'tests', 'dataset.csv']),
     'rb',
 );
 
-echo 'importing dataset... this may take a while' . PHP_EOL;
+echo 'importing dataset... this may take a while' . \PHP_EOL;
 
-while (($line = $file->fgetcsv(',', escape: "\\")) !== false) {
+while (($line = $file->fgetcsv(',', escape: '\\')) !== false) {
     [
         $trackId,
         $trackName,
@@ -130,4 +130,4 @@ while (($line = $file->fgetcsv(',', escape: "\\")) !== false) {
     ]);
 }
 
-echo 'dataset imported' . PHP_EOL;
+echo 'dataset imported' . \PHP_EOL;

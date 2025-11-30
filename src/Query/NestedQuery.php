@@ -11,14 +11,16 @@ use Bonu\ElasticsearchBuilder\Exception\Query\EmptyNestedQueryException;
  */
 class NestedQuery implements QueryInterface
 {
-    /** @var null|\Bonu\ElasticsearchBuilder\Query\QueryInterface */
+    /**
+     * @var null|\Bonu\ElasticsearchBuilder\Query\QueryInterface
+     */
     protected ?QueryInterface $query = null;
 
     /**
      * @param string|\Stringable $path
      */
     public function __construct(
-        protected string|\Stringable $path,
+        protected string | \Stringable $path,
     ) {
     }
 

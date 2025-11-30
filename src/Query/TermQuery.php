@@ -13,11 +13,11 @@ class TermQuery implements QueryInterface
 
     /**
      * @param string|\Stringable $field
-     * @param int|float|string|bool $value
+     * @param bool|float|int|string $value
      */
     public function __construct(
-        protected string|\Stringable $field,
-        protected int|float|string|bool $value,
+        protected string | \Stringable $field,
+        protected int | float | string | bool $value,
     ) {
     }
 

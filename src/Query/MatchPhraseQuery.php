@@ -14,12 +14,12 @@ class MatchPhraseQuery implements QueryInterface
 
     /**
      * @param string|\Stringable $field
-     * @param int|float|string|bool $value
+     * @param bool|float|int|string $value
      * @param null|int $slop
      */
     public function __construct(
-        protected string|\Stringable $field,
-        protected int|float|string|bool $value,
+        protected string | \Stringable $field,
+        protected int | float | string | bool $value,
         protected ?int $slop = null,
     ) {
     }

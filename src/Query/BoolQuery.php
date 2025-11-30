@@ -6,6 +6,9 @@ namespace Bonu\ElasticsearchBuilder\Query;
 
 use Bonu\ElasticsearchBuilder\Exception\Query\EmptyBoolQueryException;
 
+use function array_map;
+use function array_filter;
+
 /**
  * @see https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-bool-query
  */
@@ -113,24 +116,6 @@ class BoolQuery implements QueryInterface
     }
 
     /**
-     * @param \Bonu\ElasticsearchBuilder\Query\QueryInterface $query
-     * @param self::TYPE* $type
-     */
-    protected function mergeAddQuery(QueryInterface $query, string $type): void
-    {
-        if ($query instanceof self && ($query->getQueries()[$type] ?? []) !== []) {
-            $this->queries[$type] = [
-                ...($this->getQueries()[$type] ?? []),
-                ...($query->getQueries()[$type] ?? []),
-            ];
-
-            return;
-        }
-
-        $this->queries[$type][] = $query;
-    }
-
-    /**
      * @inheritDoc
      */
     public function toArray(): array
@@ -161,5 +146,23 @@ class BoolQuery implements QueryInterface
         return [
             'bool' => $this->addBoostToQuery($queries),
         ];
+    }
+
+    /**
+     * @param \Bonu\ElasticsearchBuilder\Query\QueryInterface $query
+     * @param self::TYPE* $type
+     */
+    protected function mergeAddQuery(QueryInterface $query, string $type): void
+    {
+        if ($query instanceof self && ($query->getQueries()[$type] ?? []) !== []) {
+            $this->queries[$type] = [
+                ...($this->getQueries()[$type] ?? []),
+                ...($query->getQueries()[$type] ?? []),
+            ];
+
+            return;
+        }
+
+        $this->queries[$type][] = $query;
     }
 }

@@ -41,7 +41,7 @@ trait SizeableAggregation
 
         return [
             ...$aggregation,
-            'size' => $this->size
+            'size' => $this->size,
         ];
     }
 }

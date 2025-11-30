@@ -35,7 +35,7 @@ trait AnalyzerAwareQuery
 
         return [
             ...$query,
-            'analyzer' => $this->analyzer
+            'analyzer' => $this->analyzer,
         ];
     }
 }

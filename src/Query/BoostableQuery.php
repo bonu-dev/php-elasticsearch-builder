@@ -35,7 +35,7 @@ trait BoostableQuery
 
         return [
             ...$query,
-            'boost' => $this->boost
+            'boost' => $this->boost,
         ];
     }
 }

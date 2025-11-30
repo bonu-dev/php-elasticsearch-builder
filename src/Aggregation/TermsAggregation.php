@@ -18,8 +18,8 @@ class TermsAggregation implements AggregationInterface
      * @param string|\Stringable $field
      */
     public function __construct(
-        protected string|\Stringable $name,
-        protected string|\Stringable $field,
+        protected string | \Stringable $name,
+        protected string | \Stringable $field,
     ) {
     }
 

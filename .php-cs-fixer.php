@@ -196,7 +196,7 @@ return (new Config())
         'trim_array_spaces' => true,
         'native_function_invocation' => ['include' => ['@all']],
         'array_syntax' => ['syntax' => 'short'],
-        'psr_autoloading' => ['dir' => './app'],
+        'psr_autoloading' => ['dir' => './src'],
         'native_function_casing' => true,
         'native_type_declaration_casing' => true,
         'native_constant_invocation' => [

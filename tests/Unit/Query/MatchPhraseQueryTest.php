@@ -9,6 +9,11 @@ use PHPUnit\Framework\Attributes\Depends;
 use Bonu\ElasticsearchBuilder\Tests\TestCase;
 use Bonu\ElasticsearchBuilder\Query\MatchPhraseQuery;
 
+use const PHP_FLOAT_EPSILON;
+
+/**
+ * @internal
+ */
 final class MatchPhraseQueryTest extends TestCase
 {
     #[Test]
@@ -26,17 +31,17 @@ final class MatchPhraseQueryTest extends TestCase
         ], $array);
     }
 
-    #[Test]
     #[Depends('itCorrectlyBuildsArray')]
+    #[Test]
     public function itCorrectlySetsBoost(): void
     {
         $array = new MatchPhraseQuery('foo', 'bar')->boost(10.0)->toArray();
 
-        $this->assertSame(10.0, $array['match_phrase']['foo']['boost']);
+        $this->assertEqualsWithDelta(10.0, $array['match_phrase']['foo']['boost'], PHP_FLOAT_EPSILON);
     }
 
-    #[Test]
     #[Depends('itCorrectlyBuildsArray')]
+    #[Test]
     public function itCorrectlySetsSlop(): void
     {
         $array = new MatchPhraseQuery('foo', 'bar', 10)->toArray();
@@ -45,8 +50,8 @@ final class MatchPhraseQueryTest extends TestCase
         $this->assertSame(10, $array['match_phrase']['foo']['slop']);
     }
 
-    #[Test]
     #[Depends('itCorrectlyBuildsArray')]
+    #[Test]
     public function itCorrectlySetsAnalyzer(): void
     {
         $array = new MatchPhraseQuery('foo', 'bar')

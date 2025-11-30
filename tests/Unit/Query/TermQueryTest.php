@@ -9,6 +9,11 @@ use PHPUnit\Framework\Attributes\Depends;
 use Bonu\ElasticsearchBuilder\Tests\TestCase;
 use Bonu\ElasticsearchBuilder\Query\TermQuery;
 
+use const PHP_FLOAT_EPSILON;
+
+/**
+ * @internal
+ */
 final class TermQueryTest extends TestCase
 {
     #[Test]
@@ -26,12 +31,12 @@ final class TermQueryTest extends TestCase
         ], $array);
     }
 
-    #[Test]
     #[Depends('itCorrectlyBuildsArray')]
+    #[Test]
     public function itCorrectlySetsBoost(): void
     {
         $array = new TermQuery('foo', 'bar')->boost(10.0)->toArray();
 
-        $this->assertSame(10.0, $array['term']['foo']['boost']);
+        $this->assertEqualsWithDelta(10.0, $array['term']['foo']['boost'], PHP_FLOAT_EPSILON);
     }
 }

@@ -6,7 +6,9 @@ namespace Bonu\ElasticsearchBuilder\Tests\Unit\Aggregation;
 
 use Bonu\ElasticsearchBuilder\Tests\TestCase;
 
+/**
+ * @internal
+ */
 final class TermsAggregationTest extends TestCase
 {
-
 }

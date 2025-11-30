@@ -12,6 +12,9 @@ use PHPUnit\Framework\Attributes\DependsExternal;
 use Bonu\ElasticsearchBuilder\Tests\Fixture\BoolQueryFixture;
 use Bonu\ElasticsearchBuilder\Tests\Unit\Query\BoolQueryTest;
 
+/**
+ * @internal
+ */
 final class QueryBuilderTest extends TestCase
 {
     #[Test]
@@ -28,9 +31,9 @@ final class QueryBuilderTest extends TestCase
         ], new QueryBuilder('foo')->build());
     }
 
-    #[Test]
     #[Depends('itReturnsIndexInBody')]
     #[DependsExternal(BoolQueryTest::class, 'itCorrectlyBuildsArray')]
+    #[Test]
     public function itReturnsQueryInBody(): void
     {
         $builder = new QueryBuilder('foo')
