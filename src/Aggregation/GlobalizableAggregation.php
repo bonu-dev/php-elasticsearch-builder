@@ -24,14 +24,6 @@ trait GlobalizableAggregation
     }
 
     /**
-     * @return bool
-     */
-    public function isGlobal(): bool
-    {
-        return $this->global;
-    }
-
-    /**
      * @param array<string, mixed> $aggregation
      * @param string|\Stringable $name
      *

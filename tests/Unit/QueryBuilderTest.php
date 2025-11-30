@@ -66,6 +66,7 @@ final class QueryBuilderTest extends TestCase
             ->aggregation(new TermsAggregation('tags', 'bar'));
     }
 
+    #[Depends('itReturnsIndexInBody')]
     #[DependsExternal(TermsAggregationTest::class, 'itCanBeGlobalAndFilteredAndSizedTogether')]
     #[Test]
     public function itReturnsAggregationsInBody(): void
@@ -95,6 +96,34 @@ final class QueryBuilderTest extends TestCase
                                     ],
                                 ],
                             ],
+                        ],
+                    ],
+                ],
+            ],
+            'index' => 'foo',
+        ], $builder->build());
+    }
+
+    #[Depends('itReturnsIndexInBody')]
+    #[DependsExternal(TermsAggregationTest::class, 'itBuildsBasicTermsAggregation')]
+    #[Test]
+    public function itReturnsMultipleAggregationsCorrectly(): void
+    {
+        $builder = new QueryBuilder('foo')
+            ->aggregation(new TermsAggregation('tags', 'category'))
+            ->aggregation(new TermsAggregation('tags_2', 'category2'));
+
+        $this->assertSame([
+            'body' => [
+                'aggs' => [
+                    'tags' => [
+                        'terms' => [
+                            'field' => 'category',
+                        ],
+                    ],
+                    'tags_2' => [
+                        'terms' => [
+                            'field' => 'category2',
                         ],
                     ],
                 ],

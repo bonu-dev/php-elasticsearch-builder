@@ -7,11 +7,6 @@ namespace Bonu\ElasticsearchBuilder\Aggregation;
 interface AggregationInterface
 {
     /**
-     * @return bool
-     */
-    public function isGlobal(): bool;
-
-    /**
      * @return string
      */
     public function getName(): string;
