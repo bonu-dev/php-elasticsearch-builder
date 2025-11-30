@@ -30,7 +30,7 @@ trait FilterableAggregation
      *
      * @return array<string, mixed>
      */
-    protected function addFilterToAggregation(array $aggregation, string|\Stringable $name): array
+    protected function addFilterToAggregation(array $aggregation, string | \Stringable $name): array
     {
         if ($this->query === null) {
             return $aggregation;

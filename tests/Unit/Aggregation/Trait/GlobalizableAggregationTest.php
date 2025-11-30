@@ -4,15 +4,19 @@ declare(strict_types=1);
 
 namespace Bonu\ElasticsearchBuilder\Tests\Unit\Aggregation\Trait;
 
+use PHPUnit\Framework\Attributes\Test;
 use Bonu\ElasticsearchBuilder\Tests\TestCase;
 use Bonu\ElasticsearchBuilder\Aggregation\GlobalizableAggregation;
 
+/**
+ * @internal
+ */
 final class GlobalizableAggregationTest extends TestCase
 {
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
     public function itCorrentlySetsIfAggregationIsGlobal(): void
     {
-        $fixture = new class {
+        $fixture = new class() {
             use GlobalizableAggregation;
         };
 

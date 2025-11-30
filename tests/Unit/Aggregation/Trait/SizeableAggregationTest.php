@@ -4,16 +4,20 @@ declare(strict_types=1);
 
 namespace Bonu\ElasticsearchBuilder\Tests\Unit\Aggregation\Trait;
 
+use PHPUnit\Framework\Attributes\Test;
 use Bonu\ElasticsearchBuilder\Tests\TestCase;
 use Bonu\ElasticsearchBuilder\Aggregation\SizeableAggregation;
 use Bonu\ElasticsearchBuilder\Exception\Aggregation\InvalidAggregationSizeException;
 
+/**
+ * @internal
+ */
 final class SizeableAggregationTest extends TestCase
 {
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
     public function itThrowsExceptionIfSizeIsLessThan1(): void
     {
-        $class = new class {
+        $class = new class() {
             use SizeableAggregation;
         };
 
@@ -21,10 +25,10 @@ final class SizeableAggregationTest extends TestCase
         $class->size(0);
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
     public function itDoesNotAddSizeIfItIsNotSet(): void
     {
-        $class = new class {
+        $class = new class() {
             use SizeableAggregation;
 
             /**
@@ -39,10 +43,10 @@ final class SizeableAggregationTest extends TestCase
         $this->assertSame([], $class->toArray());
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
     public function itAddsSizeToAggregation(): void
     {
-        $class = new class {
+        $class = new class() {
             use SizeableAggregation;
 
             /**
