@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Bonu\ElasticsearchBuilder\Aggregation;
 
+use Bonu\ElasticsearchBuilder\Exception\Aggregation\InvalidAggregationSizeException;
+
 trait SizeableAggregation
 {
     /**
@@ -14,10 +16,14 @@ trait SizeableAggregation
     /**
      * @param int $size
      *
-     * @return $this
+     * @return static
      */
     public function size(int $size): static
     {
+        if ($size < 1) {
+            throw new InvalidAggregationSizeException('Size must be greater than 0, ' . $size . ' given.');
+        }
+
         $this->size = $size;
         return $this;
     }
