@@ -1,0 +1,38 @@
+name: Code Style
+
+on:
+  pull_request:
+
+jobs:
+  php-cs-fixer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.4
+      - uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-8.4-${{ hashFiles('composer.lock', 'composer.json') }}
+          restore-keys: |
+            composer-8.4-
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+      - run: vendor/bin/php-cs-fixer fix
+  rector:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.4
+      - uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-8.4-${{ hashFiles('composer.lock', 'composer.json') }}
+          restore-keys: |
+            composer-8.4-
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+      - run: vendor/bin/rector process

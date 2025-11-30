@@ -1,0 +1,55 @@
+{
+    "name": "bonu/php-elasticsearch-builder",
+    "description": "Elasticsearch query builder for PHP",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Bonu\\ElasticsearchBuilder\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Bonu\\ElasticsearchBuilder\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Matus Koterba",
+            "email": "matus@koterba.sk"
+        }
+    ],
+    "require": {
+        "php": "^8.4"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^2.0",
+        "phpunit/phpunit": "^12.0",
+        "friendsofphp/php-cs-fixer": "^3.88",
+        "rector/rector": "^2.2",
+        "elasticsearch/elasticsearch": "^9.2"
+    },
+    "scripts": {
+        "code:analyse": [
+            "./vendor/bin/phpstan analyse --memory-limit=-1"
+        ],
+        "code:fix": [
+            "./vendor/bin/rector process --clear-cache",
+            "./vendor/bin/php-cs-fixer fix --using-cache no"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    },
+    "archive": {
+        "exclude": [
+            "tests",
+            ".github",
+            ".data",
+            "docker-compose.yaml",
+            "scripts"
+        ]
+    }
+}
