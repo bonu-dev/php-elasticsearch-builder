@@ -31,10 +31,6 @@ trait BoostableQuery
      */
     protected function addBoostToQuery(array $query): array
     {
-        if ($this->boost === null) {
-            return $query;
-        }
-
         return [
             ...$query,
             'boost' => $this->boost,

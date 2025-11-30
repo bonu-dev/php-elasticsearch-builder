@@ -165,7 +165,7 @@ class BoolQuery implements QueryInterface
         if ($query instanceof self && ($query->getQueries()[$type] ?? []) !== []) {
             $this->queries[$type] = [
                 ...($this->getQueries()[$type] ?? []),
-                ...($query->getQueries()[$type] ?? []),
+                ...$query->getQueries()[$type],
             ];
 
             return;
