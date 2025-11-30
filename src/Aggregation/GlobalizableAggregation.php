@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Bonu\ElasticsearchBuilder\Aggregation;
 
+/**
+ * @see https://www.elastic.co/docs/reference/aggregations/search-aggregations-bucket-global-aggregation
+ */
 trait GlobalizableAggregation
 {
     /**

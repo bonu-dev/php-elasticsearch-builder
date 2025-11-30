@@ -27,6 +27,7 @@ final class QueryBuilderTest extends TestCase
     public function itReturnsIndexInBody(): void
     {
         $this->assertSame([
+            'body' => [],
             'index' => 'foo',
         ], new QueryBuilder('foo')->build());
     }
@@ -40,13 +41,15 @@ final class QueryBuilderTest extends TestCase
             ->query(new BoolQueryFixture('foo'));
 
         $this->assertSame([
-            'index' => 'foo',
-            'query' => [
-                'bool' => [
-                    'must' => [['foo' => 'fixture_for_bool_query']],
-                    'boost' => 1.0,
+            'body' => [
+                'query' => [
+                    'bool' => [
+                        'must' => [['foo' => 'fixture_for_bool_query']],
+                        'boost' => 1.0,
+                    ],
                 ],
             ],
+            'index' => 'foo',
         ], $builder->build());
     }
 }

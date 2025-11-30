@@ -28,15 +28,14 @@ class TermsAggregation implements AggregationInterface
      */
     public function toArray(): array
     {
-        $value = [
-            'field' => (string) $this->field,
-        ];
+        $value = ['field' => (string) $this->field];
         $value = $this->addSizeToAggregation($value);
+        $value = ['terms' => $value];
+        // @todo: Add global before filtering
+        $value = $this->addFilterToAggregation($value, $this->name);
 
         return [
-            (string) $this->name => [
-                'terms' => $value,
-            ],
+            (string) $this->name => $value,
         ];
     }
 }

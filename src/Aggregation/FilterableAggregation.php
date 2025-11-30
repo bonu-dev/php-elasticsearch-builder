@@ -26,17 +26,21 @@ trait FilterableAggregation
 
     /**
      * @param array<string, mixed> $aggregation
+     * @param string|\Stringable $name
      *
      * @return array<string, mixed>
      */
-    protected function addFilterToAggregation(array $aggregation): array
+    protected function addFilterToAggregation(array $aggregation, string|\Stringable $name): array
     {
         if ($this->query === null) {
             return $aggregation;
         }
 
         return [
-            ...$aggregation,
+            'filter' => $this->query->toArray(),
+            'aggs' => [
+                (string) $name => $aggregation,
+            ],
         ];
     }
 }
