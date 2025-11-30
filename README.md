@@ -1,5 +1,7 @@
 # PHP Query Builder for Elasticsearch
 
+[![PHPUnit](https://github.com/bonu-dev/php-elasticsearch-builder/actions/workflows/phpunit.yaml/badge.svg?branch=main)](https://github.com/bonu-dev/php-elasticsearch-builder/actions/workflows/phpunit.yaml)
+
 ## Requirements
 
 - Minimum version of PHP 8.4
