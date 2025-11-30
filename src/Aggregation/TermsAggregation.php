@@ -26,16 +26,24 @@ class TermsAggregation implements AggregationInterface
     /**
      * @inheritDoc
      */
+    public function getName(): string
+    {
+        return (string) $this->name;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function toArray(): array
     {
         $value = ['field' => (string) $this->field];
         $value = $this->addSizeToAggregation($value);
         $value = ['terms' => $value];
-        // @todo: Add global before filtering
-        $value = $this->addFilterToAggregation($value, $this->name);
+        $value = $this->addFilterToAggregation($value, $this->getName());
+        $value = $this->addGlobalToAggregation($value, $this->getName());
 
         return [
-            (string) $this->name => $value,
+            $this->getName() => $value,
         ];
     }
 }

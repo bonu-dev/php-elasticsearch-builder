@@ -9,8 +9,10 @@ use PHPUnit\Framework\Attributes\Depends;
 use Bonu\ElasticsearchBuilder\QueryBuilder;
 use Bonu\ElasticsearchBuilder\Tests\TestCase;
 use PHPUnit\Framework\Attributes\DependsExternal;
+use Bonu\ElasticsearchBuilder\Aggregation\TermsAggregation;
 use Bonu\ElasticsearchBuilder\Tests\Fixture\BoolQueryFixture;
 use Bonu\ElasticsearchBuilder\Tests\Unit\Query\BoolQueryTest;
+use Bonu\ElasticsearchBuilder\Exception\Builder\AggregationAlreadyExistsException;
 
 /**
  * @internal
@@ -32,9 +34,9 @@ final class QueryBuilderTest extends TestCase
         ], new QueryBuilder('foo')->build());
     }
 
+    #[Test]
     #[Depends('itReturnsIndexInBody')]
     #[DependsExternal(BoolQueryTest::class, 'itCorrectlyBuildsArray')]
-    #[Test]
     public function itReturnsQueryInBody(): void
     {
         $builder = new QueryBuilder('foo')
@@ -47,6 +49,51 @@ final class QueryBuilderTest extends TestCase
                         'must' => [['foo' => 'fixture_for_bool_query']],
                         'boost' => 1.0,
                     ],
+                ],
+            ],
+            'index' => 'foo',
+        ], $builder->build());
+    }
+
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function itThrowsExceptionIfTryingToAddAggregationWithAlreadyExistingName(): void
+    {
+        $this->expectException(AggregationAlreadyExistsException::class);
+
+        new QueryBuilder('foo')
+            ->aggregation(new TermsAggregation('tags', 'foo'))
+            ->aggregation(new TermsAggregation('tags', 'bar'));
+    }
+
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function itReturnsAggregationsInBody(): void
+    {
+        $builder = new QueryBuilder('foo')
+            ->aggregation(new TermsAggregation('tags', 'category')
+                ->asGlobal()
+                ->query(new BoolQueryFixture('foo'))
+            );
+
+        $this->assertSame([
+            'body' => [
+                'aggs' => [
+                    'tags' => [
+                        'global' => [],
+                        'aggs' => [
+                            'tags' => [
+                                'filter' => [
+                                    'foo' => 'fixture_for_bool_query',
+                                ],
+                                'aggs' => [
+                                    'tags' => [
+                                        'terms' => [
+                                            'field' => 'category',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ]
                 ],
             ],
             'index' => 'foo',

@@ -15,6 +15,15 @@ trait GlobalizableAggregation
     protected bool $global = false;
 
     /**
+     * @return $this
+     */
+    public function asGlobal(): static
+    {
+        $this->global = true;
+        return $this;
+    }
+
+    /**
      * @return bool
      */
     public function isGlobal(): bool
@@ -23,11 +32,22 @@ trait GlobalizableAggregation
     }
 
     /**
-     * @return $this
+     * @param array<string, mixed> $aggregation
+     * @param string|\Stringable $name
+     *
+     * @return array<string, mixed>
      */
-    public function asGlobal(): static
+    protected function addGlobalToAggregation(array $aggregation, string | \Stringable $name): array
     {
-        $this->global = true;
-        return $this;
+        if ($this->global === false) {
+            return $aggregation;
+        }
+
+        return [
+            'global' => [],
+            'aggs' => [
+                (string) $name => $aggregation,
+            ],
+        ];
     }
 }

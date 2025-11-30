@@ -6,25 +6,26 @@ namespace Bonu\ElasticsearchBuilder\Tests\Unit\Aggregation\Trait;
 
 use PHPUnit\Framework\Attributes\Test;
 use Bonu\ElasticsearchBuilder\Tests\TestCase;
-use Bonu\ElasticsearchBuilder\Aggregation\GlobalizableAggregation;
+use Bonu\ElasticsearchBuilder\Tests\Fixture\BoolQueryFixture;
+use Bonu\ElasticsearchBuilder\Aggregation\FilterableAggregation;
 
 /**
  * @internal
  */
-final class GlobalizableAggregationTest extends TestCase
+final class FilterableAggregationTest extends TestCase
 {
     #[Test]
     public function itDoesNothingIfNoQueryIsProvided(): void
     {
         $class = new class() {
-            use GlobalizableAggregation;
+            use FilterableAggregation;
 
             /**
              * @return array<array-key, mixed>
              */
             public function toArray(): array
             {
-                return $this->addGlobalToAggregation([], 'test');
+                return $this->addFilterToAggregation([], 'test');
             }
         };
 
@@ -32,26 +33,28 @@ final class GlobalizableAggregationTest extends TestCase
     }
 
     #[Test]
-    public function itAddsGlobalToAggregation(): void
+    public function itAddsFilterToAggregation(): void
     {
         $class = new class() {
-            use GlobalizableAggregation;
+            use FilterableAggregation;
 
             /**
              * @return array<array-key, mixed>
              */
             public function toArray(): array
             {
-                return $this->addGlobalToAggregation([
+                return $this->addFilterToAggregation([
                     'baz' => 'bar',
                 ], 'test');
             }
         };
 
-        $class->asGlobal();
+        $class->query(new BoolQueryFixture('foo'));
 
         $this->assertSame([
-            'global' => [],
+            'filter' => [
+                'foo' => 'fixture_for_bool_query',
+            ],
             'aggs' => [
                 'test' => [
                     'baz' => 'bar',
