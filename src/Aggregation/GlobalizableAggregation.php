@@ -44,7 +44,7 @@ trait GlobalizableAggregation
         }
 
         return [
-            'global' => [],
+            'global' => (object) [],
             'aggs' => [
                 (string) $name => $aggregation,
             ],

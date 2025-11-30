@@ -50,8 +50,8 @@ final class GlobalizableAggregationTest extends TestCase
 
         $class->asGlobal();
 
-        $this->assertSame([
-            'global' => [],
+        $this->assertEquals([
+            'global' => (object) [],
             'aggs' => [
                 'test' => [
                     'baz' => 'bar',

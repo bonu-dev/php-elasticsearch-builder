@@ -14,12 +14,14 @@ trait BoostableQuery
     /**
      * @param float $boost
      *
-     * @return $this
+     * @return static
      */
     public function boost(float $boost): static
     {
-        $this->boost = $boost;
-        return $this;
+        $clone = clone $this;
+        $clone->boost = $boost;
+
+        return $clone;
     }
 
     /**

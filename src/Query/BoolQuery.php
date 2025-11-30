@@ -74,45 +74,53 @@ class BoolQuery implements QueryInterface
     /**
      * @param \Bonu\ElasticsearchBuilder\Query\QueryInterface $query
      *
-     * @return $this
+     * @return static
      */
-    public function must(QueryInterface $query): self
+    public function must(QueryInterface $query): static
     {
-        $this->mergeAddQuery($query, self::TYPE_MUST);
-        return $this;
+        $clone = clone $this;
+        $clone->mergeAddQuery($query, self::TYPE_MUST);
+
+        return $clone;
     }
 
     /**
      * @param \Bonu\ElasticsearchBuilder\Query\QueryInterface $query
      *
-     * @return $this
+     * @return static
      */
-    public function filter(QueryInterface $query): self
+    public function filter(QueryInterface $query): static
     {
-        $this->mergeAddQuery($query, self::TYPE_FILTER);
-        return $this;
+        $clone = clone $this;
+        $clone->mergeAddQuery($query, self::TYPE_FILTER);
+
+        return $clone;
     }
 
     /**
      * @param \Bonu\ElasticsearchBuilder\Query\QueryInterface $query
      *
-     * @return $this
+     * @return static
      */
-    public function should(QueryInterface $query): self
+    public function should(QueryInterface $query): static
     {
-        $this->mergeAddQuery($query, self::TYPE_SHOULD);
-        return $this;
+        $clone = clone $this;
+        $clone->mergeAddQuery($query, self::TYPE_SHOULD);
+
+        return $clone;
     }
 
     /**
      * @param \Bonu\ElasticsearchBuilder\Query\QueryInterface $query
      *
-     * @return $this
+     * @return static
      */
-    public function mustNot(QueryInterface $query): self
+    public function mustNot(QueryInterface $query): static
     {
-        $this->mergeAddQuery($query, self::TYPE_MUST_NOT);
-        return $this;
+        $clone = clone $this;
+        $clone->mergeAddQuery($query, self::TYPE_MUST_NOT);
+
+        return $clone;
     }
 
     /**

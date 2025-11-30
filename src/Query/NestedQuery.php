@@ -27,12 +27,14 @@ class NestedQuery implements QueryInterface
     /**
      * @param \Bonu\ElasticsearchBuilder\Query\QueryInterface $query
      *
-     * @return $this
+     * @return static
      */
-    public function query(QueryInterface $query): self
+    public function query(QueryInterface $query): static
     {
-        $this->query = $query;
-        return $this;
+        $clone = clone $this;
+        $clone->query = $query;
+
+        return $clone;
     }
 
     /**

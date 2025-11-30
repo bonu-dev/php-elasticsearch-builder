@@ -12,6 +12,7 @@ use PHPUnit\Framework\Attributes\DependsExternal;
 use Bonu\ElasticsearchBuilder\Aggregation\TermsAggregation;
 use Bonu\ElasticsearchBuilder\Tests\Fixture\BoolQueryFixture;
 use Bonu\ElasticsearchBuilder\Tests\Unit\Query\BoolQueryTest;
+use Bonu\ElasticsearchBuilder\Tests\Unit\Aggregation\TermsAggregationTest;
 use Bonu\ElasticsearchBuilder\Exception\Builder\AggregationAlreadyExistsException;
 
 /**
@@ -34,9 +35,9 @@ final class QueryBuilderTest extends TestCase
         ], new QueryBuilder('foo')->build());
     }
 
-    #[Test]
     #[Depends('itReturnsIndexInBody')]
     #[DependsExternal(BoolQueryTest::class, 'itCorrectlyBuildsArray')]
+    #[Test]
     public function itReturnsQueryInBody(): void
     {
         $builder = new QueryBuilder('foo')
@@ -55,7 +56,7 @@ final class QueryBuilderTest extends TestCase
         ], $builder->build());
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[Test]
     public function itThrowsExceptionIfTryingToAddAggregationWithAlreadyExistingName(): void
     {
         $this->expectException(AggregationAlreadyExistsException::class);
@@ -65,20 +66,22 @@ final class QueryBuilderTest extends TestCase
             ->aggregation(new TermsAggregation('tags', 'bar'));
     }
 
-    #[\PHPUnit\Framework\Attributes\Test]
+    #[DependsExternal(TermsAggregationTest::class, 'itCanBeGlobalAndFilteredAndSizedTogether')]
+    #[Test]
     public function itReturnsAggregationsInBody(): void
     {
         $builder = new QueryBuilder('foo')
-            ->aggregation(new TermsAggregation('tags', 'category')
-                ->asGlobal()
-                ->query(new BoolQueryFixture('foo'))
+            ->aggregation(
+                new TermsAggregation('tags', 'category')
+                    ->asGlobal()
+                    ->query(new BoolQueryFixture('foo'))
             );
 
-        $this->assertSame([
+        $this->assertEquals([
             'body' => [
                 'aggs' => [
                     'tags' => [
-                        'global' => [],
+                        'global' => (object) [],
                         'aggs' => [
                             'tags' => [
                                 'filter' => [
@@ -93,7 +96,7 @@ final class QueryBuilderTest extends TestCase
                                 ],
                             ],
                         ],
-                    ]
+                    ],
                 ],
             ],
             'index' => 'foo',

@@ -6,5 +6,4 @@ namespace Bonu\ElasticsearchBuilder\Exception\Builder;
 
 abstract class BuilderException extends \RuntimeException
 {
-
 }

@@ -14,12 +14,14 @@ trait AnalyzerAwareQuery
     /**
      * @param string $analyzer
      *
-     * @return $this
+     * @return static
      */
     public function analyzer(string $analyzer): static
     {
-        $this->analyzer = $analyzer;
-        return $this;
+        $clone = clone $this;
+        $clone->analyzer = $analyzer;
+
+        return $clone;
     }
 
     /**

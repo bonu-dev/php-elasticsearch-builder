@@ -9,6 +9,8 @@ use Bonu\ElasticsearchBuilder\Query\QueryInterface;
 use Bonu\ElasticsearchBuilder\Aggregation\AggregationInterface;
 use Bonu\ElasticsearchBuilder\Exception\Builder\AggregationAlreadyExistsException;
 
+use function array_key_exists;
+
 /**
  * @internal
  */
@@ -76,15 +78,14 @@ class QueryBuilder
     /**
      * @param \Bonu\ElasticsearchBuilder\Query\QueryInterface $query
      *
-     * @return self
+     * @return $this
      */
     public function query(QueryInterface $query): self
     {
-        if ($this->query === null) {
-            $this->query = new BoolQuery();
-        }
+        $this->query = ($this->query ?? new BoolQuery())->must(
+            $query,
+        );
 
-        $this->query->must($query);
         return $this;
     }
 
@@ -97,12 +98,12 @@ class QueryBuilder
      */
     public function aggregation(AggregationInterface $aggregation): self
     {
-        if (\array_key_exists($aggregation->getName(), $this->aggregations)) {
+        if (array_key_exists($aggregation->getName(), $this->aggregations)) {
             throw new AggregationAlreadyExistsException(
                 'Aggregation with name "' . $aggregation->getName() . '" already exists.',
             );
         }
-        
+
         $this->aggregations[$aggregation->getName()] = $aggregation;
         return $this;
     }
