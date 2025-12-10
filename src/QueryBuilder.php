@@ -11,9 +11,6 @@ use Bonu\ElasticsearchBuilder\Exception\Builder\AggregationAlreadyExistsExceptio
 
 use function array_key_exists;
 
-/**
- * @internal
- */
 class QueryBuilder
 {
     /**
