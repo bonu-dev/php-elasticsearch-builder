@@ -169,10 +169,10 @@ final class QueryBuilderTest extends TestCase
 
     #[\PHPUnit\Framework\Attributes\Test]
     #[Depends('itReturnsSizeInBody')]
-    public function itThrowsInvalidFromExceptionIfFromIsLowerThanOne(): void
+    public function itThrowsInvalidFromExceptionIfFromIsLowerThanZero(): void
     {
         $this->expectException(InvalidFromException::class);
 
-        new QueryBuilder('foo')->from(0);
+        new QueryBuilder('foo')->from(-1);
     }
 }

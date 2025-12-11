@@ -148,14 +148,14 @@ class QueryBuilder
     /**
      * @see https://www.elastic.co/docs/reference/elasticsearch/rest-apis/paginate-search-results
      *
-     * @param int<1, max> $from
+     * @param int<0, max> $from
      *
      * @return static
      */
     public function from(int $from): self
     {
         // Sanity check
-        if ($from < 1) {
+        if ($from < 0) {
             throw new InvalidFromException('From must be greater than 0, ' . $from . ' given.');
         }
 
