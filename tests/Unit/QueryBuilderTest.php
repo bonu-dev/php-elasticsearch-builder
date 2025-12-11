@@ -131,4 +131,28 @@ final class QueryBuilderTest extends TestCase
             'index' => 'foo',
         ], $builder->build());
     }
+
+    #[Depends('itReturnsIndexInBody')]
+    #[Test]
+    public function itReturnsSizeInBody(): void
+    {
+        $this->assertSame([
+            'body' => [
+                'size' => 123,
+            ],
+            'index' => 'foo',
+        ], new QueryBuilder('foo')->size(123)->build());
+    }
+
+    #[Depends('itReturnsIndexInBody')]
+    #[Test]
+    public function itReturnsFromInBody(): void
+    {
+        $this->assertSame([
+            'body' => [
+                'from' => 123,
+            ],
+            'index' => 'foo',
+        ], new QueryBuilder('foo')->from(123)->build());
+    }
 }

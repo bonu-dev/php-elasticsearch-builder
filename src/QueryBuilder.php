@@ -24,6 +24,16 @@ class QueryBuilder
     protected array $aggregations = [];
 
     /**
+     * @var null|int
+     */
+    protected ?int $size = null;
+
+    /**
+     * @var null|int
+     */
+    protected ?int $from = null;
+
+    /**
      * @param null|string $index
      */
     public function __construct(
@@ -58,6 +68,14 @@ class QueryBuilder
             $payload['body']['query'] = $this->query->toArray();
         }
 
+        if ($this->size !== null) {
+            $payload['body']['size'] = $this->size;
+        }
+
+        if ($this->from !== null) {
+            $payload['body']['from'] = $this->from;
+        }
+
         if ($this->aggregations !== []) {
             $payload['body']['aggs'] = [];
 
@@ -75,7 +93,7 @@ class QueryBuilder
     /**
      * @param \Bonu\ElasticsearchBuilder\Query\QueryInterface $query
      *
-     * @return $this
+     * @return static
      */
     public function query(QueryInterface $query): self
     {
@@ -89,7 +107,7 @@ class QueryBuilder
     /**
      * @param \Bonu\ElasticsearchBuilder\Aggregation\AggregationInterface $aggregation
      *
-     * @return $this
+     * @return static
      *
      * @throws \Bonu\ElasticsearchBuilder\Exception\Builder\AggregationAlreadyExistsException
      */
@@ -102,6 +120,28 @@ class QueryBuilder
         }
 
         $this->aggregations[$aggregation->getName()] = $aggregation;
+        return $this;
+    }
+
+    /**
+     * @param int $size
+     *
+     * @return static
+     */
+    public function size(int $size): self
+    {
+        $this->size = $size;
+        return $this;
+    }
+
+    /**
+     * @param int $from
+     *
+     * @return static
+     */
+    public function from(int $from): self
+    {
+        $this->from = $from;
         return $this;
     }
 }
