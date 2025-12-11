@@ -151,12 +151,14 @@ class QueryBuilder
      * @param int<0, max> $from
      *
      * @return static
+     *
+     * @throws \Bonu\ElasticsearchBuilder\Exception\Builder\InvalidFromException
      */
     public function from(int $from): self
     {
         // Sanity check
         if ($from < 0) {
-            throw new InvalidFromException('From must be greater than 0, ' . $from . ' given.');
+            throw new InvalidFromException('From must be greater than or equal to 0, ' . $from . ' given.');
         }
 
         $this->from = $from;
