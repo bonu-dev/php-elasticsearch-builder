@@ -171,6 +171,11 @@ class BoolQuery implements QueryInterface
             return;
         }
 
+        if ($query instanceof CompositeQuery) {
+            $this->mergeAddQuery($query->query(), $type);
+            return;
+        }
+
         $this->queries[$type][] = $query;
     }
 }
