@@ -1,0 +1,12 @@
+.gitattributes export-ignore
+.php-cs-fixer.php export-ignore
+docker-compose.yaml export-ignore
+Dockerfile export-ignore
+Makefile export-ignore
+phpstan.neon.dist export-ignore
+phpunit.xml.dist export-ignore
+rector.php export-ignore
+.data/ export-ignore
+.github/ export-ignore
+scripts/ export-ignore
+tests/ export-ignore
