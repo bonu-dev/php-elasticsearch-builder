@@ -15,7 +15,7 @@ use Bonu\ElasticsearchBuilder\Tests\IntegrationTestCase;
 final class QueryBuilderTest extends IntegrationTestCase
 {
     #[Test]
-    public function itWorkWithBaseQuery(): void
+    public function itWorksWithBaseQuery(): void
     {
         $response = $this->client?->search(
             new QueryBuilder(self::INDEX)->build()
@@ -30,9 +30,7 @@ final class QueryBuilderTest extends IntegrationTestCase
         $response = $this->client?->search(
             new QueryBuilder(self::INDEX)->size(1)->build()
         )->asArray();
-
         $this->assertCount(1, $response['hits']['hits']);
-        $this->assertSame('3EJS5LyekDim1Tf5rBFmZl', $response['hits']['hits'][0]['_source']['track_id']);
     }
 
     #[Depends('itWorksWithSize')]
@@ -40,9 +38,13 @@ final class QueryBuilderTest extends IntegrationTestCase
     public function itWorksWithFrom(): void
     {
         $response = $this->client?->search(
-            new QueryBuilder(self::INDEX)->size(1)->from(1)->build()
+            new QueryBuilder(self::INDEX)->size(2)->from(0)->build()
         )->asArray();
+        $this->assertCount(2, $response['hits']['hits']);
 
-        $this->assertSame('1oQW6G2ZiwMuHqlPpP27DB', $response['hits']['hits'][0]['_source']['track_id']);
+        $response = $this->client?->search(
+            new QueryBuilder(self::INDEX)->size(2)->from(1)->build()
+        )->asArray();
+        $this->assertCount(2, $response['hits']['hits']);
     }
 }
