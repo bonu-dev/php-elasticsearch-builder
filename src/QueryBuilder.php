@@ -7,6 +7,8 @@ namespace Bonu\ElasticsearchBuilder;
 use Bonu\ElasticsearchBuilder\Query\BoolQuery;
 use Bonu\ElasticsearchBuilder\Query\QueryInterface;
 use Bonu\ElasticsearchBuilder\Aggregation\AggregationInterface;
+use Bonu\ElasticsearchBuilder\Exception\Builder\InvalidSizeException;
+use Bonu\ElasticsearchBuilder\Exception\Builder\InvalidFromException;
 use Bonu\ElasticsearchBuilder\Exception\Builder\AggregationAlreadyExistsException;
 
 use function array_key_exists;
@@ -124,23 +126,39 @@ class QueryBuilder
     }
 
     /**
-     * @param int $size
+     * @see https://www.elastic.co/docs/reference/elasticsearch/rest-apis/paginate-search-results
+     *
+     * @param int<1, max> $size
      *
      * @return static
+     *
+     * @throws \Bonu\ElasticsearchBuilder\Exception\Builder\InvalidSizeException
      */
     public function size(int $size): self
     {
+        // Sanity check
+        if ($size < 1) {
+            throw new InvalidSizeException('Size must be greater than 0, ' . $size . ' given.');
+        }
+
         $this->size = $size;
         return $this;
     }
 
     /**
-     * @param int $from
+     * @see https://www.elastic.co/docs/reference/elasticsearch/rest-apis/paginate-search-results
+     *
+     * @param int<1, max> $from
      *
      * @return static
      */
     public function from(int $from): self
     {
+        // Sanity check
+        if ($from < 1) {
+            throw new InvalidFromException('From must be greater than 0, ' . $from . ' given.');
+        }
+
         $this->from = $from;
         return $this;
     }

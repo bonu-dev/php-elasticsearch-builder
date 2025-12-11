@@ -12,6 +12,8 @@ use PHPUnit\Framework\Attributes\DependsExternal;
 use Bonu\ElasticsearchBuilder\Aggregation\TermsAggregation;
 use Bonu\ElasticsearchBuilder\Tests\Fixture\BoolQueryFixture;
 use Bonu\ElasticsearchBuilder\Tests\Unit\Query\BoolQueryTest;
+use Bonu\ElasticsearchBuilder\Exception\Builder\InvalidSizeException;
+use Bonu\ElasticsearchBuilder\Exception\Builder\InvalidFromException;
 use Bonu\ElasticsearchBuilder\Tests\Unit\Aggregation\TermsAggregationTest;
 use Bonu\ElasticsearchBuilder\Exception\Builder\AggregationAlreadyExistsException;
 
@@ -144,6 +146,15 @@ final class QueryBuilderTest extends TestCase
         ], new QueryBuilder('foo')->size(123)->build());
     }
 
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[Depends('itReturnsSizeInBody')]
+    public function itThrowsInvalidSizeExceptionIfSizeIsLowerThanOne(): void
+    {
+        $this->expectException(InvalidSizeException::class);
+
+        new QueryBuilder('foo')->size(0);
+    }
+
     #[Depends('itReturnsIndexInBody')]
     #[Test]
     public function itReturnsFromInBody(): void
@@ -154,5 +165,14 @@ final class QueryBuilderTest extends TestCase
             ],
             'index' => 'foo',
         ], new QueryBuilder('foo')->from(123)->build());
+    }
+
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[Depends('itReturnsSizeInBody')]
+    public function itThrowsInvalidFromExceptionIfFromIsLowerThanOne(): void
+    {
+        $this->expectException(InvalidFromException::class);
+
+        new QueryBuilder('foo')->from(0);
     }
 }
