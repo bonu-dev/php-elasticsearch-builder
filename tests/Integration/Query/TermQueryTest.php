@@ -17,13 +17,13 @@ final class TermQueryTest extends IntegrationTestCase
     #[Test]
     public function itFiltersOutSpecificRecord(): void
     {
-        $result = $this->client?->search(
+        $response = $this->client?->search(
             new QueryBuilder(self::INDEX)
                 ->query(new TermQuery('track_id', '0L0LgwFZ7UtBnRNQvSBty6'))
                 ->build()
         )->asArray();
 
-        $this->assertSame(1, $result['hits']['total']['value']);
-        $this->assertSame('0L0LgwFZ7UtBnRNQvSBty6', $result['hits']['hits'][0]['_source']['track_id']);
+        $this->assertSame(1, $response['hits']['total']['value']);
+        $this->assertSame('0L0LgwFZ7UtBnRNQvSBty6', $response['hits']['hits'][0]['_source']['track_id']);
     }
 }
