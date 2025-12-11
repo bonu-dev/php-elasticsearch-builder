@@ -6,5 +6,4 @@ namespace Bonu\ElasticsearchBuilder\Exception\Builder;
 
 final class InvalidSizeException extends BuilderException
 {
-
 }

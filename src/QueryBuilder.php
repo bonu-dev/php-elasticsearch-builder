@@ -7,8 +7,8 @@ namespace Bonu\ElasticsearchBuilder;
 use Bonu\ElasticsearchBuilder\Query\BoolQuery;
 use Bonu\ElasticsearchBuilder\Query\QueryInterface;
 use Bonu\ElasticsearchBuilder\Aggregation\AggregationInterface;
-use Bonu\ElasticsearchBuilder\Exception\Builder\InvalidSizeException;
 use Bonu\ElasticsearchBuilder\Exception\Builder\InvalidFromException;
+use Bonu\ElasticsearchBuilder\Exception\Builder\InvalidSizeException;
 use Bonu\ElasticsearchBuilder\Exception\Builder\AggregationAlreadyExistsException;
 
 use function array_key_exists;
