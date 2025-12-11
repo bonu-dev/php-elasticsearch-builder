@@ -19,7 +19,7 @@ jobs:
             composer-8.4-
       - name: Install dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
-      - run: vendor/bin/php-cs-fixer fix
+      - run: vendor/bin/php-cs-fixer fix --dry-run
   rector:
     runs-on: ubuntu-latest
     steps:
@@ -35,4 +35,4 @@ jobs:
             composer-8.4-
       - name: Install dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
-      - run: vendor/bin/rector process
+      - run: vendor/bin/rector process --dry-run

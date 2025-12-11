@@ -15,7 +15,7 @@ trait GlobalizableAggregation
     protected bool $global = false;
 
     /**
-     * @return $this
+     * @return static
      */
     public function asGlobal(): static
     {
