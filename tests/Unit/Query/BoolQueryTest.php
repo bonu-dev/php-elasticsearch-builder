@@ -8,6 +8,8 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\Depends;
 use Bonu\ElasticsearchBuilder\Tests\TestCase;
 use Bonu\ElasticsearchBuilder\Query\BoolQuery;
+use Bonu\ElasticsearchBuilder\Query\CompositeQuery;
+use Bonu\ElasticsearchBuilder\Query\QueryInterface;
 use Bonu\ElasticsearchBuilder\Tests\Fixture\BoolQueryFixture;
 use Bonu\ElasticsearchBuilder\Exception\Query\EmptyBoolQueryException;
 
@@ -171,6 +173,36 @@ final class BoolQueryTest extends TestCase
                         'must' => [['doe_nested' => 'fixture_for_bool_query']],
                         'boost' => 1.0,
                     ]],
+                ],
+                'boost' => 1.0,
+            ],
+        ], $query->toArray());
+    }
+
+    #[Depends('itMergesSameNestedBoolQueries')]
+    #[Test]
+    public function itMergesCompositeQueryIfItContainsBoolQuery(): void
+    {
+        $composite = new class() extends CompositeQuery {
+            /**
+             * @inheritDoc
+             */
+            #[\Override]
+            public function query(): QueryInterface
+            {
+                return new BoolQuery()->must(new BoolQueryFixture('foo_nested'));
+            }
+        };
+
+        $query = new BoolQuery()
+            ->must(new BoolQueryFixture('foo'))
+            ->must($composite);
+
+        $this->assertSame([
+            'bool' => [
+                'must' => [
+                    ['foo' => 'fixture_for_bool_query'],
+                    ['foo_nested' => 'fixture_for_bool_query'],
                 ],
                 'boost' => 1.0,
             ],
