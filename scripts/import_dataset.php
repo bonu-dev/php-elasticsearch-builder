@@ -110,6 +110,7 @@ while (($line = $file->fgetcsv(',', escape: '\\')) !== false) {
 
     $client->index([
         'index' => 'spotify',
+        'id' => $trackId,
         'body' => [
             'track_id' => $trackId,
             'track_name' => $trackName,
