@@ -156,6 +156,23 @@ new NestedQuery('variants')
     ->query(new MatchQuery('variants.name', 'red'))
 ```
 
+### RangeQuery
+
+https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-range-query
+
+Range queries can be used for filtering by multiple data types. For this reason, each data type has its own query class to fully support type-hinting.
+
+```php
+use Bonu\ElasticsearchBuilder\Query\NumericRangeQuery;
+use Bonu\ElasticsearchBuilder\Query\DatetimeRangeQuery;
+
+new NumericRangeQuery('price', gte: 100)
+    ->boost(10);
+
+new DatetimeRangeQuery('created_at', lt: date('Y-m-d'), format: 'yyyy-MM-dd', timeZone: 'Europe/Prague')
+    ->boost(20);
+```
+
 ## Aggregations
 
 ### TermsAggregation
