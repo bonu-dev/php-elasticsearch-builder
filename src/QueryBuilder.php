@@ -99,12 +99,12 @@ class QueryBuilder
      */
     public function query(QueryInterface $query): self
     {
-        $query = ($this->query ?? new BoolQuery())->must(
+        $internalQuery = ($this->query ?? new BoolQuery())->must(
             $query,
         );
 
         $clone = clone $this;
-        $clone->query = $query;
+        $clone->query = $internalQuery;
 
         return $clone;
     }
