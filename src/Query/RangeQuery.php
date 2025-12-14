@@ -31,7 +31,6 @@ abstract class RangeQuery implements QueryInterface
      * @param null|string $format
      * @param null|string $relation
      * @param null|string $timeZone
-     *
      */
     public function __construct(
         protected string | \Stringable $field,

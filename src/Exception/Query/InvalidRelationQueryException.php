@@ -6,5 +6,4 @@ namespace Bonu\ElasticsearchBuilder\Exception\Query;
 
 class InvalidRelationQueryException extends QueryException
 {
-
 }

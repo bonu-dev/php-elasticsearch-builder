@@ -15,7 +15,7 @@ class NumericRangeQuery extends RangeQuery
      * @param null|float|int $lte
      * @param null|float|int $gt
      * @param null|float|int $gte
-     * @param self::RELATION_* $relation
+     * @param null|self::RELATION_* $relation
      *
      * @throws \Bonu\ElasticsearchBuilder\Exception\Query\InvalidRelationQueryException
      */
@@ -25,7 +25,7 @@ class NumericRangeQuery extends RangeQuery
         null | int | float $lte = null,
         null | int | float $gt = null,
         null | int | float $gte = null,
-        string $relation = self::RELATION_INTERSECTS,
+        ?string $relation = self::RELATION_INTERSECTS,
     ) {
         parent::__construct($field, $lt, $lte, $gt, $gte, relation: $relation);
     }

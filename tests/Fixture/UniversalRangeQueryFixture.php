@@ -8,5 +8,4 @@ use Bonu\ElasticsearchBuilder\Query\RangeQuery;
 
 final class UniversalRangeQueryFixture extends RangeQuery
 {
-
 }
