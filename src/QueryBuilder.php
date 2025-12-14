@@ -99,11 +99,14 @@ class QueryBuilder
      */
     public function query(QueryInterface $query): self
     {
-        $this->query = ($this->query ?? new BoolQuery())->must(
+        $internalQuery = ($this->query ?? new BoolQuery())->must(
             $query,
         );
 
-        return $this;
+        $clone = clone $this;
+        $clone->query = $internalQuery;
+
+        return $clone;
     }
 
     /**
@@ -121,8 +124,10 @@ class QueryBuilder
             );
         }
 
-        $this->aggregations[$aggregation->getName()] = $aggregation;
-        return $this;
+        $clone = clone $this;
+        $clone->aggregations[$aggregation->getName()] = $aggregation;
+
+        return $clone;
     }
 
     /**
@@ -141,8 +146,9 @@ class QueryBuilder
             throw new InvalidSizeException('Size must be greater than 0, ' . $size . ' given.');
         }
 
-        $this->size = $size;
-        return $this;
+        $clone = clone $this;
+        $clone->size = $size;
+        return $clone;
     }
 
     /**
@@ -161,7 +167,8 @@ class QueryBuilder
             throw new InvalidFromException('From must be greater than or equal to 0, ' . $from . ' given.');
         }
 
-        $this->from = $from;
-        return $this;
+        $clone = clone $this;
+        $clone->from = $from;
+        return $clone;
     }
 }

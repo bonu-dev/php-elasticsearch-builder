@@ -7,7 +7,7 @@
 
 ---
 
-**A clean, fluent, and type-safe query builder for Elasticsearch** - built from the ground up to work seamlessly with the [official Elasticsearch PHP client](https://github.com/elastic/elasticsearch-php).
+**A clean, fluent, immutable, and type-safe query builder for Elasticsearch** - built from the ground up to work seamlessly with the [official Elasticsearch PHP client](https://github.com/elastic/elasticsearch-php).
 
 No extra dependencies. No magic. Just expressive, readable, and maintainable Elasticsearch queries in PHP.
 
@@ -59,6 +59,8 @@ Out of box it supports:
 - Configuring pagination of results using `from()` and `size()` methods
 
 ## Queries
+
+> **Note** Queries are immutable.
 
 This package comes with a set of ready-to-use queries which is documented below.
 
@@ -174,6 +176,8 @@ new DatetimeRangeQuery('created_at', lt: date('Y-m-d'), format: 'yyyy-MM-dd', ti
 ```
 
 ## Aggregations
+
+> **Note** Aggregations are immutable.
 
 ### TermsAggregation
 

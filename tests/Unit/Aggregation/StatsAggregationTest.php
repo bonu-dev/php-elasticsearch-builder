@@ -38,7 +38,7 @@ final class StatsAggregationTest extends TestCase
     public function itCanBeGlobal(): void
     {
         $agg = new StatsAggregation('price_stats', 'price');
-        $agg->asGlobal();
+        $agg = $agg->asGlobal();
 
         $this->assertEquals([
             'price_stats' => [
@@ -60,7 +60,7 @@ final class StatsAggregationTest extends TestCase
     public function itCanBeFiltered(): void
     {
         $agg = new StatsAggregation('price_stats', 'price');
-        $agg->query(new BoolQueryFixture('foo'));
+        $agg = $agg->query(new BoolQueryFixture('foo'));
 
         $this->assertSame([
             'price_stats' => [
@@ -85,7 +85,7 @@ final class StatsAggregationTest extends TestCase
     public function itCanBeGlobalAndFilteredTogether(): void
     {
         $agg = new StatsAggregation('price_stats', 'price');
-        $agg->asGlobal()->query(new BoolQueryFixture('foo'));
+        $agg = $agg->asGlobal()->query(new BoolQueryFixture('foo'));
 
         $this->assertEquals([
             'price_stats' => [

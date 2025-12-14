@@ -58,7 +58,7 @@ final class SizeableAggregationTest extends TestCase
             }
         };
 
-        $class->size(10);
+        $class = $class->size(10);
         $this->assertSame(['size' => 10], $class->toArray());
     }
 }
