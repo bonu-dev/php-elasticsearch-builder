@@ -7,7 +7,7 @@
 
 ---
 
-**A clean, fluent, and type-safe query builder for Elasticsearch** - built from the ground up to work seamlessly with the [official Elasticsearch PHP client](https://github.com/elastic/elasticsearch-php).
+**A clean, fluent, immutable, and type-safe query builder for Elasticsearch** - built from the ground up to work seamlessly with the [official Elasticsearch PHP client](https://github.com/elastic/elasticsearch-php).
 
 No extra dependencies. No magic. Just expressive, readable, and maintainable Elasticsearch queries in PHP.
 
@@ -37,7 +37,6 @@ $products = $client->search($builder->build());
 - Zero dependencies beyond the official Elasticsearch PHP SDK
 - Easy creation of reusable composite queries
 - 100% type-hinted and IDE-friendly
-- Immutable
 
 ## Requirements
 
