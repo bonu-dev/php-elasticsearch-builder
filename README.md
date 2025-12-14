@@ -37,6 +37,7 @@ $products = $client->search($builder->build());
 - Zero dependencies beyond the official Elasticsearch PHP SDK
 - Easy creation of reusable composite queries
 - 100% type-hinted and IDE-friendly
+- Immutable
 
 ## Requirements
 
@@ -59,6 +60,8 @@ Out of box it supports:
 - Configuring pagination of results using `from()` and `size()` methods
 
 ## Queries
+
+> **Note** Queries are immutable.
 
 This package comes with a set of ready-to-use queries which is documented below.
 
@@ -174,6 +177,8 @@ new DatetimeRangeQuery('created_at', lt: date('Y-m-d'), format: 'yyyy-MM-dd', ti
 ```
 
 ## Aggregations
+
+> **Note** Aggregations are immutable.
 
 ### TermsAggregation
 

@@ -20,8 +20,10 @@ trait FilterableAggregation
      */
     public function query(QueryInterface $query): static
     {
-        $this->query = $query;
-        return $this;
+        $clone = clone $this;
+        $clone->query = $query;
+
+        return $clone;
     }
 
     /**

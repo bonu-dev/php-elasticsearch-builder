@@ -19,8 +19,10 @@ trait GlobalizableAggregation
      */
     public function asGlobal(): static
     {
-        $this->global = true;
-        return $this;
+        $clone = clone $this;
+        $clone->global = true;
+
+        return $clone;
     }
 
     /**

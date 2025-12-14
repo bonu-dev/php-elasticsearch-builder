@@ -48,7 +48,7 @@ final class GlobalizableAggregationTest extends TestCase
             }
         };
 
-        $class->asGlobal();
+        $class = $class->asGlobal();
 
         $this->assertEquals([
             'global' => (object) [],

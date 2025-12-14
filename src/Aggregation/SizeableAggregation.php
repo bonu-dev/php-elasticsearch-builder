@@ -24,8 +24,9 @@ trait SizeableAggregation
             throw new InvalidAggregationSizeException('Size must be greater than 0, ' . $size . ' given.');
         }
 
-        $this->size = $size;
-        return $this;
+        $clone = clone $this;
+        $clone->size = $size;
+        return $clone;
     }
 
     /**

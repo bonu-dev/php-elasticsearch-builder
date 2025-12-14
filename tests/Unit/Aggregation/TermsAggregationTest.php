@@ -39,7 +39,7 @@ final class TermsAggregationTest extends TestCase
     public function itAddsSizeWhenProvided(): void
     {
         $agg = new TermsAggregation('tags', 'category');
-        $agg->size(20);
+        $agg = $agg->size(20);
 
         $this->assertSame([
             'tags' => [
@@ -57,7 +57,7 @@ final class TermsAggregationTest extends TestCase
     public function itCanBeGlobal(): void
     {
         $agg = new TermsAggregation('tags', 'category');
-        $agg->asGlobal();
+        $agg = $agg->asGlobal();
 
         $this->assertEquals([
             'tags' => [
@@ -79,7 +79,7 @@ final class TermsAggregationTest extends TestCase
     public function itCanBeFiltered(): void
     {
         $agg = new TermsAggregation('tags', 'category');
-        $agg->query(new BoolQueryFixture('foo'));
+        $agg = $agg->query(new BoolQueryFixture('foo'));
 
         $this->assertSame([
             'tags' => [
@@ -105,7 +105,7 @@ final class TermsAggregationTest extends TestCase
     public function itCanBeGlobalAndFilteredAndSizedTogether(): void
     {
         $agg = new TermsAggregation('tags', 'category');
-        $agg->size(5)->asGlobal()->query(new BoolQueryFixture('foo'));
+        $agg = $agg->size(5)->asGlobal()->query(new BoolQueryFixture('foo'));
 
         $this->assertEquals([
             'tags' => [

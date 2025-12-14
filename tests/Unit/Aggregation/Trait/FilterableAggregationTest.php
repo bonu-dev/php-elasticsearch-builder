@@ -49,7 +49,7 @@ final class FilterableAggregationTest extends TestCase
             }
         };
 
-        $class->query(new BoolQueryFixture('foo'));
+        $class = $class->query(new BoolQueryFixture('foo'));
 
         $this->assertSame([
             'filter' => [
