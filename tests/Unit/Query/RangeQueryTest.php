@@ -7,6 +7,9 @@ namespace Bonu\ElasticsearchBuilder\Tests\Unit\Query;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\Depends;
 use Bonu\ElasticsearchBuilder\Tests\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use Bonu\ElasticsearchBuilder\Query\NumericRangeQuery;
+use Bonu\ElasticsearchBuilder\Query\DatetimeRangeQuery;
 use Bonu\ElasticsearchBuilder\Tests\Fixture\UniversalRangeQueryFixture;
 use Bonu\ElasticsearchBuilder\Exception\Query\InvalidRelationQueryException;
 
@@ -15,6 +18,8 @@ use const PHP_FLOAT_EPSILON;
 /**
  * @internal
  */
+#[CoversClass(NumericRangeQuery::class)]
+#[CoversClass(DatetimeRangeQuery::class)]
 final class RangeQueryTest extends TestCase
 {
     #[Test]
