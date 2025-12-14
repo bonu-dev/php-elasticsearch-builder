@@ -96,5 +96,17 @@ final class RangeQueryTest extends TestCase
             field: 'foo',
             gte: 1,
         )->toArray());
+
+        $this->assertSame([
+            'range' => [
+                'foo' => [
+                    'gt' => 0,
+                    'boost' => 1.0,
+                ],
+            ],
+        ], new UniversalRangeQueryFixture(
+            field: 'foo',
+            gt: 0,
+        )->toArray());
     }
 }

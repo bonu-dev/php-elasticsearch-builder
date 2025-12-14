@@ -75,7 +75,7 @@ abstract class RangeQuery implements QueryInterface
                     'format' => $this->format,
                     'relation' => $this->relation,
                     'time_zone' => $this->timeZone,
-                ])),
+                ], static fn (mixed $value) => $value !== null)),
             ],
         ];
     }
