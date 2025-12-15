@@ -6,5 +6,4 @@ namespace Bonu\ElasticsearchBuilder\Exception\Query;
 
 final class EmptyRangeQueryException extends QueryException
 {
-
 }

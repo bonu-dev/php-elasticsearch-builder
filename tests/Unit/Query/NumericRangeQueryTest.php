@@ -8,7 +8,6 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\Depends;
 use Bonu\ElasticsearchBuilder\Tests\TestCase;
 use Bonu\ElasticsearchBuilder\Query\NumericRangeQuery;
-use Bonu\ElasticsearchBuilder\Query\DatetimeRangeQuery;
 use Bonu\ElasticsearchBuilder\Exception\Query\EmptyRangeQueryException;
 use Bonu\ElasticsearchBuilder\Exception\Query\InvalidRelationQueryException;
 
