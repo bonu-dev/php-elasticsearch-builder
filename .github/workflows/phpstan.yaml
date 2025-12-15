@@ -13,7 +13,7 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: 8.4
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: vendor
           key: composer-8.4-${{ hashFiles('composer.lock', 'composer.json') }}
