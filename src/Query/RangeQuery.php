@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bonu\ElasticsearchBuilder\Query;
 
+use Bonu\ElasticsearchBuilder\Exception\Query\EmptyRangeQueryException;
 use Bonu\ElasticsearchBuilder\Exception\Query\InvalidRelationQueryException;
 
 use function implode;
@@ -31,6 +32,9 @@ abstract class RangeQuery implements QueryInterface
      * @param null|string $format
      * @param null|string $relation
      * @param null|string $timeZone
+     *
+     * @throws \Bonu\ElasticsearchBuilder\Exception\Query\InvalidRelationQueryException
+     * @throws \Bonu\ElasticsearchBuilder\Exception\Query\EmptyRangeQueryException
      */
     public function __construct(
         protected string | \Stringable $field,
@@ -42,6 +46,10 @@ abstract class RangeQuery implements QueryInterface
         protected ?string $relation = null,
         protected ?string $timeZone = null,
     ) {
+        if ($lt === null && $lte === null && $gt === null && $gte === null) {
+            throw new EmptyRangeQueryException('Range query must have at least one bound (lt,lte,gt,gte) set.');
+        }
+
         if ($this->relation !== null && ! in_array($this->relation, [
             self::RELATION_INTERSECTS,
             self::RELATION_CONTAINS,

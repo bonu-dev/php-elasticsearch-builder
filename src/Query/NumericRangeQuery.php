@@ -18,6 +18,7 @@ class NumericRangeQuery extends RangeQuery
      * @param null|self::RELATION_* $relation
      *
      * @throws \Bonu\ElasticsearchBuilder\Exception\Query\InvalidRelationQueryException
+     * @throws \Bonu\ElasticsearchBuilder\Exception\Query\EmptyRangeQueryException
      */
     public function __construct(
         string | \Stringable $field,

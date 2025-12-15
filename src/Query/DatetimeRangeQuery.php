@@ -20,6 +20,7 @@ class DatetimeRangeQuery extends RangeQuery
      * @param null|string $timeZone
      *
      * @throws \Bonu\ElasticsearchBuilder\Exception\Query\InvalidRelationQueryException
+     * @throws \Bonu\ElasticsearchBuilder\Exception\Query\EmptyRangeQueryException
      */
     public function __construct(
         string | \Stringable $field,
