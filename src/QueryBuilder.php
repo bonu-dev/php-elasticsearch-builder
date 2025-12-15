@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Bonu\ElasticsearchBuilder;
 
 use Bonu\ElasticsearchBuilder\Query\BoolQuery;
+use Bonu\ElasticsearchBuilder\Sort\SortInterface;
 use Bonu\ElasticsearchBuilder\Query\QueryInterface;
 use Bonu\ElasticsearchBuilder\Aggregation\AggregationInterface;
 use Bonu\ElasticsearchBuilder\Exception\Builder\InvalidFromException;
 use Bonu\ElasticsearchBuilder\Exception\Builder\InvalidSizeException;
 use Bonu\ElasticsearchBuilder\Exception\Builder\AggregationAlreadyExistsException;
 
+use function array_map;
 use function array_key_exists;
 
 class QueryBuilder
@@ -24,6 +26,11 @@ class QueryBuilder
      * @var array<string, \Bonu\ElasticsearchBuilder\Aggregation\AggregationInterface>
      */
     protected array $aggregations = [];
+
+    /**
+     * @var list<\Bonu\ElasticsearchBuilder\Sort\SortInterface>
+     */
+    protected array $sorts = [];
 
     /**
      * @var null|int
@@ -89,6 +96,13 @@ class QueryBuilder
             }
         }
 
+        if ($this->sorts !== []) {
+            $payload['body']['sort'] = array_map(
+                static fn (SortInterface $sort): array => $sort->toArray(),
+                $this->sorts,
+            );
+        }
+
         return $payload;
     }
 
@@ -127,6 +141,18 @@ class QueryBuilder
         $clone = clone $this;
         $clone->aggregations[$aggregation->getName()] = $aggregation;
 
+        return $clone;
+    }
+
+    /**
+     * @param \Bonu\ElasticsearchBuilder\Sort\SortInterface $sort
+     *
+     * @return static
+     */
+    public function sort(SortInterface $sort): self
+    {
+        $clone = clone $this;
+        $clone->sorts[] = $sort;
         return $clone;
     }
 

@@ -7,9 +7,12 @@ namespace Bonu\ElasticsearchBuilder\Tests\Unit;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\Depends;
 use Bonu\ElasticsearchBuilder\QueryBuilder;
+use Bonu\ElasticsearchBuilder\Sort\FieldSort;
 use Bonu\ElasticsearchBuilder\Tests\TestCase;
 use PHPUnit\Framework\Attributes\DependsExternal;
+use Bonu\ElasticsearchBuilder\Sort\SortDirectionEnum;
 use Bonu\ElasticsearchBuilder\Aggregation\TermsAggregation;
+use Bonu\ElasticsearchBuilder\Tests\Unit\Sort\FieldSortTest;
 use Bonu\ElasticsearchBuilder\Tests\Fixture\BoolQueryFixture;
 use Bonu\ElasticsearchBuilder\Tests\Unit\Query\BoolQueryTest;
 use Bonu\ElasticsearchBuilder\Exception\Builder\InvalidFromException;
@@ -174,5 +177,33 @@ final class QueryBuilderTest extends TestCase
         $this->expectException(InvalidFromException::class);
 
         new QueryBuilder('foo')->from(-1);
+    }
+
+    #[Depends('itReturnsIndexInBody')]
+    #[DependsExternal(FieldSortTest::class, 'itCorrectlyBuildsArray')]
+    #[Test]
+    public function itReturnsSortsInBody(): void
+    {
+        $builder = new QueryBuilder('foo')
+            ->sort(new FieldSort('foo'))
+            ->sort(new FieldSort('bar', SortDirectionEnum::DESC));
+
+        $this->assertSame([
+            'body' => [
+                'sort' => [
+                    [
+                        'foo' => [
+                            'order' => 'asc',
+                        ],
+                    ],
+                    [
+                        'bar' => [
+                            'order' => 'desc',
+                        ],
+                    ],
+                ],
+            ],
+            'index' => 'foo',
+        ], $builder->build());
     }
 }
