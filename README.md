@@ -214,6 +214,28 @@ new StatsAggregation('global_price_stats', 'price')
     ->asGlobal();
 ```
 
+## Sorts
+
+### FieldSort
+
+```php
+
+use Bonu\ElasticsearchBuilder\Sort\FieldSort;
+use Bonu\ElasticsearchBuilder\Sort\SortDirectionEnum;
+
+new FieldSort('my_field', SortDirectionEnum::ASC)
+```
+
+### ScoreSort
+
+```php
+
+use Bonu\ElasticsearchBuilder\Sort\ScoreSort;
+use Bonu\ElasticsearchBuilder\Sort\SortDirectionEnum;
+
+new ScoreSort(SortDirectionEnum::DESC)
+```
+
 ## License
 
 This package is licensed under the MIT License.
