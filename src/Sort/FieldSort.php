@@ -17,9 +17,9 @@ class FieldSort implements SortInterface
      * @param null|string $format
      */
     public function __construct(
-        private string | \Stringable $field,
-        private SortDirectionEnum $direction = SortDirectionEnum::ASC,
-        private ?string $format = null
+        protected string | \Stringable $field,
+        protected SortDirectionEnum $direction = SortDirectionEnum::ASC,
+        protected ?string $format = null
     ) {
     }
 
