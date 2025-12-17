@@ -10,7 +10,7 @@ use Bonu\ElasticsearchBuilder\Query\QueryInterface;
 use Bonu\ElasticsearchBuilder\Aggregation\AggregationInterface;
 use Bonu\ElasticsearchBuilder\Exception\Builder\InvalidFromException;
 use Bonu\ElasticsearchBuilder\Exception\Builder\InvalidSizeException;
-use Bonu\ElasticsearchBuilder\Exception\Builder\AggregationAlreadyExistsException;
+use Bonu\ElasticsearchBuilder\Exception\Builder\DuplicatedBuilderAggregationException;
 
 use function array_map;
 use function array_key_exists;
@@ -128,12 +128,12 @@ class QueryBuilder
      *
      * @return static
      *
-     * @throws \Bonu\ElasticsearchBuilder\Exception\Builder\AggregationAlreadyExistsException
+     * @throws \Bonu\ElasticsearchBuilder\Exception\Builder\DuplicatedBuilderAggregationException
      */
     public function aggregation(AggregationInterface $aggregation): self
     {
         if (array_key_exists($aggregation->getName(), $this->aggregations)) {
-            throw new AggregationAlreadyExistsException(
+            throw new DuplicatedBuilderAggregationException(
                 'Aggregation with name "' . $aggregation->getName() . '" already exists.',
             );
         }
