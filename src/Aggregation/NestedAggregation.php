@@ -6,6 +6,9 @@ namespace Bonu\ElasticsearchBuilder\Aggregation;
 
 use Bonu\ElasticsearchBuilder\Exception\Aggregation\DuplicatedNestedAggregationException;
 
+use function array_key_exists;
+use function iterator_to_array;
+
 /**
  * @see https://www.elastic.co/docs/reference/aggregations/search-aggregations-bucket-nested-aggregation
  */
@@ -66,7 +69,7 @@ class NestedAggregation implements AggregationInterface
             'nested' => [
                 'path' => (string) $this->path,
             ],
-            'aggs' => \iterator_to_array($this->mapAggregations()),
+            'aggs' => iterator_to_array($this->mapAggregations()),
         ];
         $value = $this->addFilterToAggregation($value, $this->getName());
         $value = $this->addGlobalToAggregation($value, $this->getName());
