@@ -214,6 +214,17 @@ new StatsAggregation('global_price_stats', 'price')
     ->asGlobal();
 ```
 
+## NestedAggregation
+
+https://www.elastic.co/docs/reference/aggregations/search-aggregations-bucket-nested-aggregation
+
+```php
+use Bonu\ElasticsearchBuilder\Aggregation\NestedAggregation;
+
+new NestedAggregation('categories', 'products')
+    ->aggregation(new StatsAggregation('product_price', 'products.price'))
+```
+
 ## Sorts
 
 ### FieldSort
