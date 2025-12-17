@@ -23,6 +23,7 @@
 - PHPDoc on methods and properties
     - Every method and property under `src/` MUST have a PHPDoc/docblock.
     - Method PHPDoc must include the common tags applicable to the signature and behavior: `@param` for all parameters, `@return`, `@throws` for any thrown exceptions, and other standard tags as needed.
+    - Exception: when the method docblock contains `@inheritDoc` (exactly this inline tag, case-insensitive), explicit `@param`/`@return` tags are not required. Ensure the inherited (parent/interface/trait) documentation already defines all relevant tags. This exception applies to methods only; properties must still declare `@var`.
     - Property PHPDoc must include `@var` with the fully qualified class name (FQCN) or precise type. Do not rely on imported names inside PHPDoc; always use FQCNs.
     - In all PHPDoc tags, use FQCNs for class/interface/trait names (e.g., `\Namespace\ClassName`).
 
@@ -58,5 +59,5 @@
 - [ ] Every Aggregation/Query/Sort class has an accurate `@see` to Elastic docs.
 - [ ] URLs point to the correct feature page and are not generic home pages.
 - [ ] Code style and immutability patterns follow existing files.
-- [ ] Every method and property under `src/` has PHPDoc with appropriate tags; all class names in PHPDoc use FQCNs.
+- [ ] Every method and property under `src/` has PHPDoc with appropriate tags; `@inheritDoc` is accepted for methods in place of explicit `@param`/`@return` when the parent defines them; all class names in PHPDoc use FQCNs.
 - [ ] Each Aggregation/Query/Sort has unit tests in `tests/Unit` covering all logical branches and edge cases.

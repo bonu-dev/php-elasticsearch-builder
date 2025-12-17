@@ -179,6 +179,35 @@ new DatetimeRangeQuery('created_at', lt: date('Y-m-d'), format: 'yyyy-MM-dd', ti
 
 > **Note** Aggregations are immutable.
 
+Similar to queries, it is also possible to create reusable composite aggregations using abstract `Bonu\ElasticsearchBuilder\Aggregation\CompositeAggregation` class.
+
+Example of composite aggregation:
+
+```php
+use Bonu\ElasticsearchBuilder\Aggregation\TermsAggregation;
+use Bonu\ElasticsearchBuilder\Aggregation\NestedAggregation;
+use Bonu\ElasticsearchBuilder\Aggregation\CompositeAggregation;
+
+class CategoryBrandAggregation extends CompositeAggregation
+{
+    /**
+     * @param string|\Stringable $name
+     */
+    public function __construct(
+        private readonly string | Stringable $name,
+    ) {}
+
+    /**
+     * @inheritDoc
+     */
+    public function aggregation(): AggregationInterface
+    {
+        return new NestedAggregation($this->name, 'products')
+            ->aggregation(new TermsAggregation('by_brand', 'products.brand_id'));
+    }
+}
+```
+
 ### TermsAggregation
 
 https://www.elastic.co/docs/reference/aggregations/search-aggregations-bucket-terms-aggregation
