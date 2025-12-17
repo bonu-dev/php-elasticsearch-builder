@@ -7,20 +7,23 @@ namespace Bonu\ElasticsearchBuilder\Aggregation;
 abstract class CompositeAggregation implements AggregationInterface
 {
     /**
+     * @return \Bonu\ElasticsearchBuilder\Aggregation\AggregationInterface
+     */
+    abstract public function aggregation(): AggregationInterface;
+
+    /**
      * @inheritDoc
      */
-    #[\Override]
     public function getName(): string
     {
-        // TODO: Implement getName() method.
+        return $this->aggregation()->getName();
     }
 
     /**
      * @inheritDoc
      */
-    #[\Override]
     public function toArray(): array
     {
-        // TODO: Implement toArray() method.
+        return $this->aggregation()->toArray();
     }
 }
