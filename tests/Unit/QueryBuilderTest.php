@@ -18,7 +18,7 @@ use Bonu\ElasticsearchBuilder\Tests\Unit\Query\BoolQueryTest;
 use Bonu\ElasticsearchBuilder\Exception\Builder\InvalidFromException;
 use Bonu\ElasticsearchBuilder\Exception\Builder\InvalidSizeException;
 use Bonu\ElasticsearchBuilder\Tests\Unit\Aggregation\TermsAggregationTest;
-use Bonu\ElasticsearchBuilder\Exception\Builder\AggregationAlreadyExistsException;
+use Bonu\ElasticsearchBuilder\Exception\Builder\DuplicatedBuilderAggregationException;
 
 /**
  * @internal
@@ -64,7 +64,7 @@ final class QueryBuilderTest extends TestCase
     #[Test]
     public function itThrowsExceptionIfTryingToAddAggregationWithAlreadyExistingName(): void
     {
-        $this->expectException(AggregationAlreadyExistsException::class);
+        $this->expectException(DuplicatedBuilderAggregationException::class);
 
         new QueryBuilder('foo')
             ->aggregation(new TermsAggregation('tags', 'foo'))
