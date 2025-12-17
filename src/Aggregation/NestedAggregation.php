@@ -47,7 +47,9 @@ class NestedAggregation implements AggregationInterface
     public function aggregation(AggregationInterface $aggregation): static
     {
         if (array_key_exists($aggregation->getName(), $this->aggregations)) {
-            throw new DuplicatedNestedAggregationException('Nested aggregation with name "' . $aggregation->getName() . '" already exists.');
+            throw new DuplicatedNestedAggregationException(
+                'Nested aggregation with name "' . $aggregation->getName() . '" already exists.',
+            );
         }
 
         $clone = clone $this;
@@ -64,6 +66,7 @@ class NestedAggregation implements AggregationInterface
             'nested' => [
                 'path' => (string) $this->path,
             ],
+            'aggs' => \iterator_to_array($this->mapAggregations()),
         ];
         $value = $this->addFilterToAggregation($value, $this->getName());
         $value = $this->addGlobalToAggregation($value, $this->getName());
@@ -71,5 +74,15 @@ class NestedAggregation implements AggregationInterface
         return [
             $this->getName() => $value,
         ];
+    }
+
+    /**
+     * @return \Generator<array-key, mixed>
+     */
+    protected function mapAggregations(): \Generator
+    {
+        foreach ($this->aggregations as $aggregation) {
+            yield from $aggregation->toArray();
+        }
     }
 }
