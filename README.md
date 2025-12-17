@@ -179,6 +179,8 @@ new DatetimeRangeQuery('created_at', lt: date('Y-m-d'), format: 'yyyy-MM-dd', ti
 
 > **Note** Aggregations are immutable.
 
+Similar to queries, it is also possible to create reusable composite aggregations using abstract `Bonu\ElasticsearchBuilder\Aggregation\CompositeAggregation` class.
+
 ### TermsAggregation
 
 https://www.elastic.co/docs/reference/aggregations/search-aggregations-bucket-terms-aggregation
