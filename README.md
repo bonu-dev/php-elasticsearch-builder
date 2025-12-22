@@ -243,7 +243,7 @@ new StatsAggregation('global_price_stats', 'price')
     ->asGlobal();
 ```
 
-## NestedAggregation
+### NestedAggregation
 
 https://www.elastic.co/docs/reference/aggregations/search-aggregations-bucket-nested-aggregation
 
