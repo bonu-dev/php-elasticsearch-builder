@@ -13,12 +13,21 @@ use Bonu\ElasticsearchBuilder\Aggregation\MultiTermsAggregation;
 use Bonu\ElasticsearchBuilder\Tests\Unit\Aggregation\Trait\SizeableAggregationTest;
 use Bonu\ElasticsearchBuilder\Tests\Unit\Aggregation\Trait\FilterableAggregationTest;
 use Bonu\ElasticsearchBuilder\Tests\Unit\Aggregation\Trait\GlobalizableAggregationTest;
+use Bonu\ElasticsearchBuilder\Exception\Aggregation\NotEnoughFieldsAggregationException;
 
 /**
  * @internal
  */
 final class MultiTermsAggregationTest extends TestCase
 {
+    #[Test]
+    public function itThrowsExceptionWhenEnoughFieldsWereNotProvided(): void
+    {
+        $this->expectException(NotEnoughFieldsAggregationException::class);
+
+        new MultiTermsAggregation('tags', ['foo']);
+    }
+
     #[Test]
     public function itBuildsBasicMultiTermsAggregation(): void
     {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bonu\ElasticsearchBuilder\Aggregation;
 
+use Bonu\ElasticsearchBuilder\Exception\Aggregation\NotEnoughFieldsAggregationException;
 use function array_map;
 
 /**
@@ -18,11 +19,16 @@ class MultiTermsAggregation implements AggregationInterface
     /**
      * @param string|\Stringable $name
      * @param list<string|\Stringable> $fields
+     *
+     * @throws \Bonu\ElasticsearchBuilder\Exception\Aggregation\NotEnoughFieldsAggregationException
      */
     public function __construct(
         protected string | \Stringable $name,
         protected array $fields,
     ) {
+        if (count($fields) < 2) {
+            throw new NotEnoughFieldsAggregationException('At least two fields are required for MultiTermsAggregation.');
+        }
     }
 
     /**
