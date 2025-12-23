@@ -254,6 +254,18 @@ new NestedAggregation('categories', 'products')
     ->aggregation(new StatsAggregation('product_price', 'products.price'))
 ```
 
+### MultiTermsAggregation
+
+https://www.elastic.co/docs/reference/aggregations/search-aggregations-bucket-multi-terms-aggregation
+
+```php
+use Bonu\ElasticsearchBuilder\Aggregation\MultiTermsAggregation;
+
+new MultiTermsAggregation('foo', ['product', 'category'])
+    ->size(10)
+    ->query(new TermQuery('status', 'active'));
+```
+
 ## Sorts
 
 ### FieldSort
