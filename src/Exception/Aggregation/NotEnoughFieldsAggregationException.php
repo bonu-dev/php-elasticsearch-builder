@@ -6,5 +6,4 @@ namespace Bonu\ElasticsearchBuilder\Exception\Aggregation;
 
 final class NotEnoughFieldsAggregationException extends AggregationException
 {
-
 }

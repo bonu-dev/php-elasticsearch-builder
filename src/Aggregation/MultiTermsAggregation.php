@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Bonu\ElasticsearchBuilder\Aggregation;
 
 use Bonu\ElasticsearchBuilder\Exception\Aggregation\NotEnoughFieldsAggregationException;
+
+use function count;
 use function array_map;
 
 /**
