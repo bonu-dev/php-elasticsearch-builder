@@ -58,6 +58,8 @@ class ContainerAggregation implements AggregationInterface
 
     /**
      * @inheritDoc
+     *
+     * @throws \Bonu\ElasticsearchBuilder\Exception\Aggregation\InvalidContainerAggregationException
      */
     public function toArray(): array
     {
