@@ -21,6 +21,8 @@ class HistogramAggregation implements AggregationInterface
      * @param string|\Stringable $field
      * @param float|int $interval
      * @param null|int $minDocCount
+     *
+     * @throws \Bonu\ElasticsearchBuilder\Exception\Aggregation\InvalidIntervalException
      */
     public function __construct(
         protected string | \Stringable $name,
@@ -28,7 +30,7 @@ class HistogramAggregation implements AggregationInterface
         protected int | float $interval = 10,
         protected ?int $minDocCount = null
     ) {
-        if ($interval < 1) {
+        if ($interval <= 0) {
             throw new InvalidIntervalException('Interval must be a positive number. ' . $interval . ' given.');
         }
     }
