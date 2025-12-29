@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Bonu\ElasticsearchBuilder\Aggregation;
 
-use Bonu\ElasticsearchBuilder\Exception\Aggregation\DuplicatedContainerAggregationException;
 use Bonu\ElasticsearchBuilder\Exception\Aggregation\InvalidContainerAggregationException;
+use Bonu\ElasticsearchBuilder\Exception\Aggregation\DuplicatedContainerAggregationException;
 
 use function array_key_exists;
 use function iterator_to_array;
@@ -65,7 +65,7 @@ class ContainerAggregation implements AggregationInterface
             throw new InvalidContainerAggregationException('Container aggregation must have a query or global set.');
         }
 
-        if ($this->query !== null && $this->global === true) {
+        if ($this->query !== null && $this->global) {
             throw new InvalidContainerAggregationException('Container aggregation must have a query or global set, not both.');
         }
 

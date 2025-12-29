@@ -6,5 +6,4 @@ namespace Bonu\ElasticsearchBuilder\Exception\Aggregation;
 
 class InvalidContainerAggregationException extends AggregationException
 {
-
 }
