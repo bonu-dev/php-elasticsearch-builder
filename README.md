@@ -266,6 +266,20 @@ new MultiTermsAggregation('foo', ['product', 'category'])
     ->query(new TermQuery('status', 'active'));
 ```
 
+### HistogramAggregation
+
+https://www.elastic.co/docs/reference/aggregations/search-aggregations-bucket-histogram-aggregation
+
+```php
+use Bonu\ElasticsearchBuilder\Aggregation\HistogramAggregation;
+
+// Prices in $10 intervals
+new HistogramAggregation('price_histogram', 'price', 10);
+
+// With custom interval and min_doc_count
+new HistogramAggregation('price_histogram', 'price', 50, 1);
+```
+
 ## Sorts
 
 ### FieldSort

@@ -6,6 +6,8 @@ namespace Bonu\ElasticsearchBuilder\Aggregation;
 
 use Bonu\ElasticsearchBuilder\Exception\Aggregation\InvalidIntervalException;
 
+use function array_filter;
+
 /**
  * @see https://www.elastic.co/docs/reference/aggregations/search-aggregations-bucket-histogram-aggregation
  */
@@ -17,9 +19,8 @@ class HistogramAggregation implements AggregationInterface
     /**
      * @param string|\Stringable $name
      * @param string|\Stringable $field
-     * @param int|float $interval
+     * @param float|int $interval
      * @param null|int $minDocCount
-     *
      */
     public function __construct(
         protected string | \Stringable $name,
