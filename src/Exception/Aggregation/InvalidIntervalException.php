@@ -4,6 +4,6 @@ declare(strict_types=1);
 
 namespace Bonu\ElasticsearchBuilder\Exception\Aggregation;
 
-final class InvalidIntervalException extends AggregationException
+class InvalidIntervalException extends AggregationException
 {
 }
