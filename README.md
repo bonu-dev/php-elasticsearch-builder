@@ -208,6 +208,26 @@ class CategoryBrandAggregation extends CompositeAggregation
 }
 ```
 
+### ContainerAggregation
+
+Container aggregation is used to group sub aggregations. It requires to be global or at least one filter (query) to be set, but not both.
+
+```php
+use Bonu\ElasticsearchBuilder\Query\TermQuery;
+use Bonu\ElasticsearchBuilder\Aggregation\TermsAggregation;
+use Bonu\ElasticsearchBuilder\Aggregation\ContainerAggregation;
+
+// Container with a filter
+new ContainerAggregation('my_container')
+    ->query(new TermQuery('status', 'active'))
+    ->aggregation(new TermsAggregation('by_brand', 'brand.keyword'));
+
+// Global container
+new ContainerAggregation('global_container')
+    ->asGlobal()
+    ->aggregation(new TermsAggregation('all_brands', 'brand.keyword'));
+```
+
 ### TermsAggregation
 
 https://www.elastic.co/docs/reference/aggregations/search-aggregations-bucket-terms-aggregation
