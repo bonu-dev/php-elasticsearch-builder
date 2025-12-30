@@ -71,7 +71,8 @@ Example of composite query:
 
 ```php
 use Bonu\ElasticsearchBuilder\Query\BoolQuery;
-use Bonu\ElasticsearchBuilder\Query\TermQuery;use Bonu\ElasticsearchBuilder\Query\CompositeQuery;
+use Bonu\ElasticsearchBuilder\Query\TermQuery;
+use Bonu\ElasticsearchBuilder\Query\CompositeQuery;
 
 class PubliclyVisibleProductsQuery extends CompositeQuery
 {
