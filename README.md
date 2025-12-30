@@ -60,7 +60,8 @@ Out of box it supports:
 
 ## Queries
 
-> **Note** Queries are immutable.
+> [!CAUTION]
+> Queries are immutable.
 
 This package comes with a set of ready-to-use queries which is documented below.
 
@@ -177,7 +178,8 @@ new DatetimeRangeQuery('created_at', lt: date('Y-m-d'), format: 'yyyy-MM-dd', ti
 
 ## Aggregations
 
-> **Note** Aggregations are immutable.
+> [!CAUTION]
+> Aggregations are immutable.
 
 Similar to queries, it is also possible to create reusable composite aggregations using abstract `Bonu\ElasticsearchBuilder\Aggregation\CompositeAggregation` class.
 
@@ -206,6 +208,26 @@ class CategoryBrandAggregation extends CompositeAggregation
             ->aggregation(new TermsAggregation('by_brand', 'products.brand_id'));
     }
 }
+```
+
+### ContainerAggregation
+
+Container aggregation is used to group sub-aggregations. It requires either global or at least one filter (query) to be set, but not both.
+
+```php
+use Bonu\ElasticsearchBuilder\Query\TermQuery;
+use Bonu\ElasticsearchBuilder\Aggregation\TermsAggregation;
+use Bonu\ElasticsearchBuilder\Aggregation\ContainerAggregation;
+
+// Container with a filter
+new ContainerAggregation('my_container')
+    ->query(new TermQuery('status', 'active'))
+    ->aggregation(new TermsAggregation('by_brand', 'brand.keyword'));
+
+// Global container
+new ContainerAggregation('global_container')
+    ->asGlobal()
+    ->aggregation(new TermsAggregation('all_brands', 'brand.keyword'));
 ```
 
 ### TermsAggregation
