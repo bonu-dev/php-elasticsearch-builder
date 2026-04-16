@@ -101,6 +101,16 @@ use Bonu\ElasticsearchBuilder\Query\TermQuery;
 new TermQuery('field', 'value')->boost(10)
 ```
 
+### TermsQuery
+
+https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-terms-query
+
+```php
+use Bonu\ElasticsearchBuilder\Query\TermsQuery;
+
+new TermsQuery('status', ['active', 'pending'])->boost(5)
+```
+
 ### MatchQuery
 
 https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-match-query

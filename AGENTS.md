@@ -53,6 +53,7 @@ Fluent, immutable, type-safe Elasticsearch query builder for PHP 8.4+. Zero prod
 
 ```
 QueryInterface ─┬─ TermQuery (uses BoostableQuery)
+                ├─ TermsQuery (uses BoostableQuery)
                 ├─ MatchQuery (uses BoostableQuery, AnalyzerAwareQuery)
                 ├─ MatchPhraseQuery (uses BoostableQuery, AnalyzerAwareQuery)
                 ├─ BoolQuery (uses BoostableQuery)
@@ -74,7 +75,7 @@ SortInterface ─┬─ FieldSort
                └─ ScoreSort
 
 Exception hierarchy:
-  QueryException [abstract] ─ EmptyBoolQueryException, EmptyNestedQueryException, EmptyRangeQueryException, InvalidOperatorQueryException, InvalidRelationQueryException
+  QueryException [abstract] ─ EmptyBoolQueryException, EmptyNestedQueryException, EmptyRangeQueryException, EmptyTermsQueryException, InvalidOperatorQueryException, InvalidRelationQueryException
   AggregationException [abstract] ─ DuplicatedContainerAggregationException, DuplicatedNestedAggregationException, InvalidAggregationSizeException, InvalidContainerAggregationException, InvalidIntervalException, NotEnoughFieldsAggregationException
   BuilderException [abstract] ─ DuplicatedBuilderAggregationException, InvalidFromException, InvalidSizeException
 ```
