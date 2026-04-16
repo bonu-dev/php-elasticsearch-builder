@@ -16,6 +16,7 @@ Query classes implementing `QueryInterface`. All immutable; mutation methods clo
 | `MatchQuery.php` | Full-text match (OR/AND operators) | `BoostableQuery`, `AnalyzerAwareQuery` |
 | `MatchPhraseQuery.php` | Phrase match with optional slop | `BoostableQuery`, `AnalyzerAwareQuery` |
 | `BoolQuery.php` | must/should/mustNot/filter composition | `BoostableQuery` |
+| `ExistsQuery.php` | Field existence check | `BoostableQuery` |
 | `NestedQuery.php` | Query nested document paths | — |
 | `NumericRangeQuery.php` | Numeric gt/gte/lt/lte | extends `RangeQuery` |
 | `DatetimeRangeQuery.php` | Date gt/gte/lt/lte + format/timeZone | extends `RangeQuery` |

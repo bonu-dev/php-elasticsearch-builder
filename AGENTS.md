@@ -54,6 +54,7 @@ Fluent, immutable, type-safe Elasticsearch query builder for PHP 8.4+. Zero prod
 ```
 QueryInterface ─┬─ TermQuery (uses BoostableQuery)
                 ├─ TermsQuery (uses BoostableQuery)
+                ├─ ExistsQuery (uses BoostableQuery)
                 ├─ MatchQuery (uses BoostableQuery, AnalyzerAwareQuery)
                 ├─ MatchPhraseQuery (uses BoostableQuery, AnalyzerAwareQuery)
                 ├─ BoolQuery (uses BoostableQuery)
