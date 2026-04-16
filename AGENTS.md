@@ -70,6 +70,7 @@ AggregationInterface ─┬─ TermsAggregation (uses FilterableAggregation, Glo
                       ├─ ContainerAggregation (uses FilterableAggregation, GlobalizableAggregation)
                       ├─ MultiTermsAggregation (uses FilterableAggregation, GlobalizableAggregation, SizeableAggregation)
                       ├─ HistogramAggregation (uses FilterableAggregation, GlobalizableAggregation)
+                      ├─ SumAggregation (uses FilterableAggregation, GlobalizableAggregation)
                       └─ CompositeAggregation [abstract] ─ user-defined composites
 
 SortInterface ─┬─ FieldSort
