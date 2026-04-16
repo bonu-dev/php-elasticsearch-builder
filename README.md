@@ -343,6 +343,24 @@ new SumAggregation('global_total', 'price')
     ->asGlobal();
 ```
 
+### CardinalityAggregation
+
+https://www.elastic.co/docs/reference/aggregations/search-aggregations-metrics-cardinality-aggregation
+
+```php
+use Bonu\ElasticsearchBuilder\Aggregation\CardinalityAggregation;
+
+// Count unique values
+new CardinalityAggregation('unique_brands', 'brand.keyword');
+
+// With precision threshold for better accuracy on high-cardinality fields
+new CardinalityAggregation('unique_brands', 'brand.keyword', 1000);
+
+// Filtered cardinality
+new CardinalityAggregation('active_unique_brands', 'brand.keyword')
+    ->query(new TermQuery('status', 'active'));
+```
+
 ## Sorts
 
 ### FieldSort
