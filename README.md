@@ -323,6 +323,7 @@ new HistogramAggregation('price_histogram', 'price', 10);
 new HistogramAggregation('price_histogram', 'price', 50, 1);
 ```
 
+<<<<<<< HEAD
 ### SumAggregation
 
 https://www.elastic.co/docs/reference/aggregations/search-aggregations-metrics-sum-aggregation
@@ -359,6 +360,31 @@ new CardinalityAggregation('unique_brands', 'brand.keyword', 1000);
 // Filtered cardinality
 new CardinalityAggregation('active_unique_brands', 'brand.keyword')
     ->query(new TermQuery('status', 'active'));
+```
+
+### DateHistogramAggregation
+
+https://www.elastic.co/docs/reference/aggregations/search-aggregations-bucket-datehistogram-aggregation
+
+```php
+use Bonu\ElasticsearchBuilder\Aggregation\DateHistogramAggregation;
+
+// Monthly buckets using calendar interval
+new DateHistogramAggregation('sales_over_time', 'date', calendarInterval: 'month');
+
+// Fixed 30-day intervals with date format
+new DateHistogramAggregation('monthly_sales', 'date', fixedInterval: '30d', format: 'yyyy-MM-dd');
+
+// With all options: calendar interval, min_doc_count, format, time zone, offset
+new DateHistogramAggregation(
+    'hourly_activity',
+    'timestamp',
+    calendarInterval: 'hour',
+    minDocCount: 1,
+    format: 'yyyy-MM-dd HH:mm',
+    timeZone: 'Europe/Prague',
+    offset: '+6h',
+);
 ```
 
 ## Sorts
