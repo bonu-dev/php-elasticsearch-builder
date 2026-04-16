@@ -12,6 +12,7 @@ Query classes implementing `QueryInterface`. All immutable; mutation methods clo
 | `CompositeQuery.php` | Abstract: user-defined reusable queries | — |
 | `RangeQuery.php` | Abstract base for range queries | `BoostableQuery` |
 | `TermQuery.php` | Exact value match | `BoostableQuery` |
+| `TermsQuery.php` | Multiple exact value match | `BoostableQuery` |
 | `MatchQuery.php` | Full-text match (OR/AND operators) | `BoostableQuery`, `AnalyzerAwareQuery` |
 | `MatchPhraseQuery.php` | Phrase match with optional slop | `BoostableQuery`, `AnalyzerAwareQuery` |
 | `BoolQuery.php` | must/should/mustNot/filter composition | `BoostableQuery` |

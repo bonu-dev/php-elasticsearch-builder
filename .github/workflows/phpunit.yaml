@@ -23,8 +23,9 @@ jobs:
       - uses: actions/cache@v5
         with:
           path: vendor
-          key: composer-${{ hashFiles('composer.lock', 'composer.json') }}
+          key: composer-${{ matrix.php-version }}-${{ hashFiles('composer.lock', 'composer.json') }}
           restore-keys: |
+            composer-${{ matrix.php-version }}-
             composer-
       - run: composer install --no-interaction --no-progress
       - run: vendor/bin/phpunit --testsuite unit --coverage-clover build/logs/clover.xml
