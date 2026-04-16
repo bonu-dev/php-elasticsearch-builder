@@ -323,6 +323,26 @@ new HistogramAggregation('price_histogram', 'price', 10);
 new HistogramAggregation('price_histogram', 'price', 50, 1);
 ```
 
+### SumAggregation
+
+https://www.elastic.co/docs/reference/aggregations/search-aggregations-metrics-sum-aggregation
+
+```php
+use Bonu\ElasticsearchBuilder\Aggregation\SumAggregation;
+use Bonu\ElasticsearchBuilder\Query\TermQuery;
+
+// Sum of all prices
+new SumAggregation('total_price', 'price');
+
+// Filtered sum
+new SumAggregation('active_total', 'price')
+    ->query(new TermQuery('status', 'active'));
+
+// Global sum (ignores the top-level query)
+new SumAggregation('global_total', 'price')
+    ->asGlobal();
+```
+
 ## Sorts
 
 ### FieldSort
