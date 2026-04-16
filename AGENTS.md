@@ -24,6 +24,10 @@ Fluent, immutable, type-safe Elasticsearch query builder for PHP 8.4+. Zero prod
 │   ├── Fixture/                  # Reusable test fixtures
 │   ├── Unit/                     # Mirrors src/ structure
 │   └── Integration/              # Requires running Elasticsearch
+├── .agents/skills/               # Agent Skills (agentskills.io spec)
+│   ├── create-query/SKILL.md     # Skill: create a new Query class
+│   ├── create-aggregation/SKILL.md # Skill: create a new Aggregation class
+│   └── create-sort/SKILL.md      # Skill: create a new Sort class
 ├── .ai/guidelines.md             # AI contribution rules (MUST READ before any changes)
 ├── scripts/import_dataset.php    # Imports test CSV into Elasticsearch
 └── .data/                        # Local Elasticsearch data (Docker volume)
@@ -150,6 +154,22 @@ vendor/bin/rector process --dry-run           # Check Rector rules
 - **PHPStan**: static analysis at max level
 - **Code Style**: php-cs-fixer + rector (dry-run)
 - **Release**: automated releases on main
+
+## AGENT SKILLS
+
+Skills in `.agents/skills/` follow the [agentskills.io](https://agentskills.io/specification.md) specification. Each skill is a directory containing a `SKILL.md` with YAML frontmatter (name, description) and step-by-step Markdown instructions.
+
+| Skill | Directory | When to use |
+|-------|-----------|-------------|
+| `create-query` | `.agents/skills/create-query/` | Adding a new Elasticsearch Query class (`src/Query/`) — covers class, exception, tests, AGENTS.md update |
+| `create-aggregation` | `.agents/skills/create-aggregation/` | Adding a new Elasticsearch Aggregation class (`src/Aggregation/`) — covers class, traits, exception, tests, trait tests, AGENTS.md update |
+| `create-sort` | `.agents/skills/create-sort/` | Adding a new Elasticsearch Sort class (`src/Sort/`) — covers class, tests, AGENTS.md update |
+
+Each skill contains:
+- Concrete code templates matching this project's exact conventions (immutability, PHPDoc with FQCNs, no `final`/`private`, `@see` Elastic docs)
+- Multiple templates per skill (simple, with validation, with traits, with sub-components)
+- Unit test templates with `#[Test]`, `#[Depends]`, `#[DependsExternal]` patterns
+- Hard rules checklist and verification commands
 
 ## NOTES
 
