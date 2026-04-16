@@ -19,6 +19,7 @@ Aggregation classes implementing `AggregationInterface`. All immutable; mutation
 | `HistogramAggregation.php` | Fixed-interval numeric buckets | `FilterableAggregation`, `GlobalizableAggregation` |
 | `SumAggregation.php` | Sum of numeric field values | `FilterableAggregation`, `GlobalizableAggregation` |
 | `CardinalityAggregation.php` | Distinct value count (cardinality) | `FilterableAggregation`, `GlobalizableAggregation` |
+| `DateHistogramAggregation.php` | Date-based histogram buckets (calendar/fixed interval) | `FilterableAggregation`, `GlobalizableAggregation` |
 
 ## ADDING A NEW AGGREGATION
 
