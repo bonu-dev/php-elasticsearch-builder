@@ -111,6 +111,16 @@ use Bonu\ElasticsearchBuilder\Query\TermsQuery;
 new TermsQuery('status', ['active', 'pending'])->boost(5)
 ```
 
+### ExistsQuery
+
+https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-exists-query
+
+```php
+use Bonu\ElasticsearchBuilder\Query\ExistsQuery;
+
+new ExistsQuery('field')
+```
+
 ### MatchQuery
 
 https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-match-query
