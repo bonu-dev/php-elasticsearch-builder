@@ -71,6 +71,7 @@ AggregationInterface ─┬─ TermsAggregation (uses FilterableAggregation, Glo
                       ├─ MultiTermsAggregation (uses FilterableAggregation, GlobalizableAggregation, SizeableAggregation)
                       ├─ HistogramAggregation (uses FilterableAggregation, GlobalizableAggregation)
                       ├─ SumAggregation (uses FilterableAggregation, GlobalizableAggregation)
+                      ├─ CardinalityAggregation (uses FilterableAggregation, GlobalizableAggregation)
                       └─ CompositeAggregation [abstract] ─ user-defined composites
 
 SortInterface ─┬─ FieldSort
@@ -78,7 +79,7 @@ SortInterface ─┬─ FieldSort
 
 Exception hierarchy:
   QueryException [abstract] ─ EmptyBoolQueryException, EmptyNestedQueryException, EmptyRangeQueryException, EmptyTermsQueryException, InvalidOperatorQueryException, InvalidRelationQueryException
-  AggregationException [abstract] ─ DuplicatedContainerAggregationException, DuplicatedNestedAggregationException, InvalidAggregationSizeException, InvalidContainerAggregationException, InvalidIntervalException, NotEnoughFieldsAggregationException
+  AggregationException [abstract] ─ DuplicatedContainerAggregationException, DuplicatedNestedAggregationException, InvalidAggregationSizeException, InvalidContainerAggregationException, InvalidIntervalException, InvalidPrecisionThresholdException, NotEnoughFieldsAggregationException
   BuilderException [abstract] ─ DuplicatedBuilderAggregationException, InvalidFromException, InvalidSizeException
 ```
 
