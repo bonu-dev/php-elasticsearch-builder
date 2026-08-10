@@ -14,8 +14,10 @@ use Rector\DeadCode\Rector\ClassMethod\RemoveUselessParamTagRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveNullTagValueNodeRector;
 use Rector\CodeQuality\Rector\BooleanOr\RepeatedOrEqualToInArrayRector;
+use Rector\DeadCode\Rector\ClassMethod\RemoveUselessUnionReturnDocblockRector;
 use Rector\Php84\Rector\Class_\DeprecatedAnnotationToDeprecatedAttributeRector;
 use Rector\CodeQuality\Rector\Identical\FlipTypeControlToUseExclusiveTypeRector;
+use Rector\DeadCode\Rector\ClassMethod\RemoveDuplicatedReturnSelfDocblockRector;
 
 return RectorConfig::configure()
     ->withPhpVersion(PhpVersion::PHP_84)
@@ -47,4 +49,6 @@ return RectorConfig::configure()
         RemoveUselessReturnTagRector::class,
         RemoveUselessVarTagRector::class,
         RemoveNullTagValueNodeRector::class,
+        RemoveDuplicatedReturnSelfDocblockRector::class,
+        RemoveUselessUnionReturnDocblockRector::class,
     ]);
