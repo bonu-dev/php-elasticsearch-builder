@@ -27,7 +27,7 @@
         "phpunit/phpunit": "^12.0",
         "friendsofphp/php-cs-fixer": "^3.88",
         "rector/rector": "^2.2",
-        "elasticsearch/elasticsearch": "^9.2"
+        "elasticsearch/elasticsearch": "^9.5"
     },
     "scripts": {
         "code:analyse": [
