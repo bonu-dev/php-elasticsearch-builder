@@ -135,10 +135,10 @@ Exception hierarchy:
 
 ```bash
 # Dev environment (Docker)
-make start                           # Start Docker containers
-make ws                              # Shell into workspace container
-make phpunit                         # Run PHPUnit via Docker
-make init-dataset                    # Import test CSV into Elasticsearch
+just start                           # Start Docker containers
+just ws                              # Shell into workspace container
+just phpunit                         # Run PHPUnit via Docker
+just init-dataset                    # Import test CSV into Elasticsearch
 
 # Code quality (inside container or local)
 composer code:analyse                # PHPStan at max level on src/
