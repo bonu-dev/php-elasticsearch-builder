@@ -34,25 +34,16 @@ jobs:
           github-token: ${{ github.token }}
 
   integration:
+    name: Integration (PHP ${{ matrix.php-version }}, Elasticsearch ${{ matrix.elasticsearch-major }})
     runs-on: ubuntu-latest
+    env:
+      COMPOSE_FILE: .github/elastic${{ matrix.elasticsearch-major }}/compose.yaml
+      ELASTICSEARCH_HOST: localhost:9200
 
     strategy:
       matrix:
         php-version: ['8.4', '8.5']
-
-    services:
-      elasticsearch:
-        image: docker.elastic.co/elasticsearch/elasticsearch:9.2.1
-        env:
-          discovery.type: single-node
-          xpack.security.enabled: false
-        ports:
-          - 9200:9200
-        options: >-
-          --health-cmd "curl http://localhost:9200/_cluster/health"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 10
+        elasticsearch-major: ['8', '9']
     steps:
       - uses: actions/checkout@v7
       - name: Setup PHP
@@ -62,13 +53,19 @@ jobs:
       - uses: actions/cache@v6
         with:
           path: vendor
-          key: composer-${{ hashFiles('composer.lock', 'composer.json') }}
+          key: composer-integration-${{ matrix.php-version }}-${{ matrix.elasticsearch-major }}-${{ hashFiles('composer.lock', 'composer.json') }}
           restore-keys: |
-            composer-
+            composer-integration-${{ matrix.php-version }}-${{ matrix.elasticsearch-major }}-
       - run: composer install --no-interaction --no-progress
+      - name: Install Elasticsearch ^${{ matrix.elasticsearch-major }}.0 client
+        run: composer require --dev 'elasticsearch/elasticsearch:^${{ matrix.elasticsearch-major }}.0' --with-all-dependencies --no-interaction --no-progress
+      - name: Start Elasticsearch
+        run: docker compose up --detach --wait --wait-timeout 180
       - run: ./scripts/import_dataset.php
-        env:
-          ELASTICSEARCH_HOST: localhost:9200
       - run: vendor/bin/phpunit --testsuite integration
-        env:
-          ELASTICSEARCH_HOST: localhost:9200
+      - name: Elasticsearch logs
+        if: failure()
+        run: docker compose logs
+      - name: Stop Elasticsearch
+        if: always()
+        run: docker compose down --volumes
