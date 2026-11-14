@@ -20,3 +20,17 @@ updates:
       - "matusboa"
     commit-message:
       prefix: "deps(composer): "
+  - package-ecosystem: "docker-compose"
+    directories:
+      - "/.github/elastic8"
+      - "/.github/elastic9"
+    schedule:
+      interval: "weekly"
+    assignees:
+      - "matusboa"
+    ignore:
+      - dependency-name: "docker.elastic.co/elasticsearch/elasticsearch"
+        update-types:
+          - "version-update:semver-major"
+    commit-message:
+      prefix: "deps(ci-compose): "
