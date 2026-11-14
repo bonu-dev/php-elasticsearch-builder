@@ -42,7 +42,7 @@ class NestedQuery implements QueryInterface
      */
     public function toArray(): array
     {
-        if ($this->query === null) {
+        if (! $this->query instanceof QueryInterface) {
             throw new EmptyNestedQueryException('Nested query must have a query set.');
         }
 

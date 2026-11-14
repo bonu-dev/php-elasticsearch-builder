@@ -32,23 +32,17 @@ return RectorConfig::configure()
     ->withSets([
         PHPUnitSetList::ANNOTATIONS_TO_ATTRIBUTES,
         PHPUnitSetList::PHPUNIT_CODE_QUALITY,
-        PHPUnitSetList::PHPUNIT_120,
 
         SetList::CODE_QUALITY,
         SetList::DEAD_CODE,
         SetList::TYPE_DECLARATION,
-        SetList::EARLY_RETURN,
     ])
     ->withPhpSets(php84: true)
     ->withSkip([
-        DeprecatedAnnotationToDeprecatedAttributeRector::class,
         RepeatedOrEqualToInArrayRector::class,
-        FlipTypeControlToUseExclusiveTypeRector::class,
-        DisallowedEmptyRuleFixerRector::class,
         RemoveUselessParamTagRector::class,
         RemoveUselessReturnTagRector::class,
         RemoveUselessVarTagRector::class,
         RemoveNullTagValueNodeRector::class,
-        RemoveDuplicatedReturnSelfDocblockRector::class,
         RemoveUselessUnionReturnDocblockRector::class,
     ]);

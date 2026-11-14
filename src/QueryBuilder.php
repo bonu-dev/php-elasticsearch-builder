@@ -73,7 +73,7 @@ class QueryBuilder
             $payload['index'] = $this->getIndex();
         }
 
-        if ($this->query !== null) {
+        if ($this->query instanceof BoolQuery) {
             $payload['body']['query'] = $this->query->toArray();
         }
 
