@@ -151,18 +151,6 @@
         },
         {
             "name": "composer/semver",
-<<<<<<< Updated upstream
-            "version": "3.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/composer/semver.git",
-                "reference": "f7a296f4c4cf8cb8bb83e35d6951a406bb11afa5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/composer/semver/zipball/f7a296f4c4cf8cb8bb83e35d6951a406bb11afa5",
-                "reference": "f7a296f4c4cf8cb8bb83e35d6951a406bb11afa5",
-=======
             "version": "3.6.0",
             "source": {
                 "type": "git",
@@ -173,7 +161,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/composer/semver/zipball/d92543b7ede9c4ec6b59853cefb061e39866d2cf",
                 "reference": "d92543b7ede9c4ec6b59853cefb061e39866d2cf",
->>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -225,11 +212,7 @@
             "support": {
                 "irc": "ircs://irc.libera.chat:6697/composer",
                 "issues": "https://github.com/composer/semver/issues",
-<<<<<<< Updated upstream
-                "source": "https://github.com/composer/semver/tree/3.5.0"
-=======
                 "source": "https://github.com/composer/semver/tree/3.6.0"
->>>>>>> Stashed changes
             },
             "funding": [
                 {
@@ -241,12 +224,8 @@
                     "type": "github"
                 }
             ],
-<<<<<<< Updated upstream
-            "time": "2026-09-24T14:38:51+00:00"
-=======
             "time": "2026-10-29T09:13:34+00:00",
             "published-time": "2026-10-29T09:14:11+00:00"
->>>>>>> Stashed changes
         },
         {
             "name": "composer/xdebug-handler",
@@ -553,18 +532,6 @@
         },
         {
             "name": "fidry/cpu-core-counter",
-<<<<<<< Updated upstream
-            "version": "1.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/theofidry/cpu-core-counter.git",
-                "reference": "7cbeb03e286fa81b2bbe0e6bd6b8a27c71a3144d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/theofidry/cpu-core-counter/zipball/7cbeb03e286fa81b2bbe0e6bd6b8a27c71a3144d",
-                "reference": "7cbeb03e286fa81b2bbe0e6bd6b8a27c71a3144d",
-=======
             "version": "1.4.1",
             "source": {
                 "type": "git",
@@ -575,7 +542,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/theofidry/cpu-core-counter/zipball/d384a7d0d6e67aa497327260ca95023e92dc2032",
                 "reference": "d384a7d0d6e67aa497327260ca95023e92dc2032",
->>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -616,11 +582,7 @@
             ],
             "support": {
                 "issues": "https://github.com/theofidry/cpu-core-counter/issues",
-<<<<<<< Updated upstream
-                "source": "https://github.com/theofidry/cpu-core-counter/tree/1.4.0"
-=======
                 "source": "https://github.com/theofidry/cpu-core-counter/tree/1.4.1"
->>>>>>> Stashed changes
             },
             "funding": [
                 {
@@ -628,22 +590,6 @@
                     "type": "github"
                 }
             ],
-<<<<<<< Updated upstream
-            "time": "2026-09-27T17:40:20+00:00"
-        },
-        {
-            "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.95.27",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "1d0c68ee5f37446d8ad5970b82384cd1bb0a3317"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/1d0c68ee5f37446d8ad5970b82384cd1bb0a3317",
-                "reference": "1d0c68ee5f37446d8ad5970b82384cd1bb0a3317",
-=======
             "time": "2026-09-29T22:11:39+00:00",
             "published-time": "2026-09-29T22:12:43+00:00"
         },
@@ -659,7 +605,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/e85cafc4d861c122839d5409eda3325ac0ec0300",
                 "reference": "e85cafc4d861c122839d5409eda3325ac0ec0300",
->>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -693,26 +638,15 @@
             "require-dev": {
                 "facile-it/paraunit": "^1.3.1 || ^2.11.0",
                 "infection/infection": "^0.32.7",
-<<<<<<< Updated upstream
-                "justinrainbow/json-schema": "^6.12.0",
-=======
                 "justinrainbow/json-schema": "^6.14.0",
->>>>>>> Stashed changes
                 "keradus/cli-executor": "^2.3",
                 "php-coveralls/php-coveralls": "^2.9.1",
                 "php-cs-fixer/phpunit-constraint-isidenticalstring": "^1.8",
                 "php-cs-fixer/phpunit-constraint-xmlmatchesxsd": "^1.8",
-<<<<<<< Updated upstream
-                "phpunit/phpunit": "^9.6.36 || ^10.5.64 || ^11.5.56 || ^12.5.35 || ^13.3.3",
-                "symfony/polyfill-php85": "^1.41",
-                "symfony/var-dumper": "^5.4.48 || ^6.4.45 || ^7.4.18 || ^8.1.7",
-                "symfony/yaml": "^5.4.53 || ^6.4.45 || ^7.4.18 || ^8.1.6"
-=======
                 "phpunit/phpunit": "^9.6.38 || ^10.5.66 || ^11.5.57 || ^12.5.43 || ^13.4.6",
                 "symfony/polyfill-php85": "^1.43",
                 "symfony/var-dumper": "^5.4.54 || ^6.4.49 || ^7.4.22 || ^8.1.10",
                 "symfony/yaml": "^5.4.56 || ^6.4.50 || ^7.4.23 || ^8.1.11"
->>>>>>> Stashed changes
             },
             "suggest": {
                 "ext-dom": "For handling output formats in XML",
@@ -753,11 +687,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
-<<<<<<< Updated upstream
-                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.95.27"
-=======
                 "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.95.30"
->>>>>>> Stashed changes
             },
             "funding": [
                 {
@@ -765,12 +695,8 @@
                     "type": "github"
                 }
             ],
-<<<<<<< Updated upstream
-            "time": "2026-09-22T09:54:55+00:00"
-=======
             "time": "2026-11-09T14:32:19+00:00",
             "published-time": "2026-11-09T14:32:30+00:00"
->>>>>>> Stashed changes
         },
         {
             "name": "myclabs/deep-copy",
@@ -1420,19 +1346,11 @@
         },
         {
             "name": "phpstan/phpstan",
-<<<<<<< Updated upstream
-            "version": "2.3.4",
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f20ce6f3c82556cfcfc086b152445a12d1d64fff",
-                "reference": "f20ce6f3c82556cfcfc086b152445a12d1d64fff",
-=======
             "version": "2.3.5",
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/phpstan/phpstan/zipball/645a1bd6bead15fc1b8474137467961d0fa30a79",
                 "reference": "645a1bd6bead15fc1b8474137467961d0fa30a79",
->>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -1488,12 +1406,8 @@
                     "type": "github"
                 }
             ],
-<<<<<<< Updated upstream
-            "time": "2026-10-28T22:38:53+00:00"
-=======
             "time": "2026-11-03T12:14:22+00:00",
             "published-time": "2026-11-03T12:14:36+00:00"
->>>>>>> Stashed changes
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2802,18 +2716,6 @@
         },
         {
             "name": "rector/rector",
-<<<<<<< Updated upstream
-            "version": "2.8.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/rectorphp/rector.git",
-                "reference": "12ddb68d34acb91bcf3d00302bf1c7c1b5840bd6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/12ddb68d34acb91bcf3d00302bf1c7c1b5840bd6",
-                "reference": "12ddb68d34acb91bcf3d00302bf1c7c1b5840bd6",
-=======
             "version": "2.8.4",
             "source": {
                 "type": "git",
@@ -2824,16 +2726,11 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/rectorphp/rector/zipball/55acbd956d7e3907f7d21aab54edd68a310609e6",
                 "reference": "55acbd956d7e3907f7d21aab54edd68a310609e6",
->>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
                 "php": "^7.4|^8.0",
-<<<<<<< Updated upstream
-                "phpstan/phpstan": "^2.3.4"
-=======
                 "phpstan/phpstan": "^2.3.5"
->>>>>>> Stashed changes
             },
             "conflict": {
                 "rector/rector-doctrine": "*",
@@ -2864,11 +2761,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-<<<<<<< Updated upstream
-                "source": "https://github.com/rectorphp/rector/tree/2.8.3"
-=======
                 "source": "https://github.com/rectorphp/rector/tree/2.8.4"
->>>>>>> Stashed changes
             },
             "funding": [
                 {
@@ -2876,12 +2769,8 @@
                     "type": "github"
                 }
             ],
-<<<<<<< Updated upstream
-            "time": "2026-10-29T05:51:41+00:00"
-=======
             "time": "2026-11-03T18:48:08+00:00",
             "published-time": "2026-11-03T18:48:15+00:00"
->>>>>>> Stashed changes
         },
         {
             "name": "sebastian/cli-parser",
@@ -3182,12 +3071,8 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< Updated upstream
-            "time": "2026-08-25T15:35:54+00:00"
-=======
             "time": "2026-08-25T15:35:54+00:00",
             "published-time": "2026-08-25T15:37:16+00:00"
->>>>>>> Stashed changes
         },
         {
             "name": "sebastian/environment",
@@ -4609,18 +4494,6 @@
         },
         {
             "name": "symfony/polyfill-intl-normalizer",
-<<<<<<< Updated upstream
-            "version": "v1.42.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-intl-normalizer.git",
-                "reference": "aa20edea75bd9c48cfecc8360922e5a6e5c44502"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/aa20edea75bd9c48cfecc8360922e5a6e5c44502",
-                "reference": "aa20edea75bd9c48cfecc8360922e5a6e5c44502",
-=======
             "version": "v1.43.0",
             "source": {
                 "type": "git",
@@ -4631,7 +4504,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/ebd57ccc7edb93d632e184efbe7693d2517bab3b",
                 "reference": "ebd57ccc7edb93d632e184efbe7693d2517bab3b",
->>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -4683,11 +4555,7 @@
                 "shim"
             ],
             "support": {
-<<<<<<< Updated upstream
-                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.42.0"
-=======
                 "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.43.0"
->>>>>>> Stashed changes
             },
             "funding": [
                 {
@@ -4707,12 +4575,8 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< Updated upstream
-            "time": "2026-08-07T06:33:24+00:00"
-=======
             "time": "2026-09-23T22:02:09+00:00",
             "published-time": "2026-09-30T10:23:47+00:00"
->>>>>>> Stashed changes
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -5196,18 +5060,6 @@
         },
         {
             "name": "symfony/service-contracts",
-<<<<<<< Updated upstream
-            "version": "v3.7.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/service-contracts.git",
-                "reference": "15e6a07ec2a2c75ceb1b21dd98105ee8456d2257"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/15e6a07ec2a2c75ceb1b21dd98105ee8456d2257",
-                "reference": "15e6a07ec2a2c75ceb1b21dd98105ee8456d2257",
-=======
             "version": "v3.8.1",
             "source": {
                 "type": "git",
@@ -5218,7 +5070,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/service-contracts/zipball/052852a96fd5e5ebdb617dba22031e41a3300fb5",
                 "reference": "052852a96fd5e5ebdb617dba22031e41a3300fb5",
->>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -5272,11 +5123,7 @@
                 "standards"
             ],
             "support": {
-<<<<<<< Updated upstream
-                "source": "https://github.com/symfony/service-contracts/tree/v3.7.3"
-=======
                 "source": "https://github.com/symfony/service-contracts/tree/v3.8.1"
->>>>>>> Stashed changes
             },
             "funding": [
                 {
@@ -5296,12 +5143,8 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< Updated upstream
-            "time": "2026-07-27T15:39:01+00:00"
-=======
             "time": "2026-10-20T17:38:25+00:00",
             "published-time": "2026-11-04T11:25:33+00:00"
->>>>>>> Stashed changes
         },
         {
             "name": "symfony/stopwatch",
